@@ -21,6 +21,13 @@ export function GameScreen({ sessionId }: { sessionId: string }) {
   const scheduledRev = useRef<number>(-1);
   const [busy, setBusy] = useState(false);
 
+  // El offset de reloj jitterea en cada poll; lo leemos por ref para no
+  // re-disparar el efecto del director (que perdería su temporizador).
+  const clockOffsetRef = useRef(0);
+  useEffect(() => {
+    clockOffsetRef.current = clockOffsetMs;
+  }, [clockOffsetMs]);
+
   const post = useCallback(
     async (path: string, body?: unknown) => {
       const res = await fetch(path, {
@@ -40,46 +47,61 @@ export function GameScreen({ sessionId }: { sessionId: string }) {
     setBusy(false);
   }, [post, sessionId]);
 
-  // Director: la pantalla conduce la ronda llamando a /advance en cada fase.
-  useEffect(() => {
-    if (!state) return;
-    const { status, rev } = state;
+  const status = state?.status;
+  const rev = state?.rev;
+  const questionStartedAt = state?.questionStartedAt ?? null;
 
+  // Director: la pantalla conduce la ronda llamando a /advance en cada fase.
+  // Depende SOLO de primitivos (status/rev/questionStartedAt): así el polling
+  // que devuelve el mismo estado no re-ejecuta el efecto ni mata el timer.
+  useEffect(() => {
+    if (rev == null || status == null) return;
     if (status === "WAITING" || status === "LOBBY") return;
     if (scheduledRev.current === rev) return;
     scheduledRev.current = rev;
 
+    const advanceNow = (thisRev: number) => {
+      post(`/api/session/${sessionId}/advance`, { rev: thisRev }).then((res) => {
+        // Si el POST falló, permitir reintento en el próximo poll.
+        if (!res.ok && scheduledRev.current === thisRev) scheduledRev.current = -1;
+      });
+    };
+
+    if (status === "FINAL_RANKING") {
+      const t = setTimeout(async () => {
+        try {
+          const res = await fetch("/api/session", { method: "POST" });
+          if (res.ok) {
+            const { id } = (await res.json()) as { id: string };
+            router.replace(`/game/${id}`);
+          } else {
+            scheduledRev.current = -1;
+          }
+        } catch {
+          scheduledRev.current = -1;
+        }
+      }, PHASE_MS.FINAL_RANKING);
+      return () => clearTimeout(t);
+    }
+
     let delay: number;
-    if (status === "QUESTION" && state.questionStartedAt) {
-      const nowServer = Date.now() + clockOffsetMs;
-      delay = state.questionStartedAt + QUESTION_MS + SETTLE_MS - nowServer;
+    if (status === "QUESTION" && questionStartedAt) {
+      const nowServer = Date.now() + clockOffsetRef.current;
+      delay = questionStartedAt + QUESTION_MS + SETTLE_MS - nowServer;
     } else if (status === "COUNTDOWN") {
       delay = PHASE_MS.COUNTDOWN;
     } else if (status === "ANSWER_REVEAL") {
       delay = PHASE_MS.ANSWER_REVEAL;
     } else if (status === "SCORE_UPDATE") {
       delay = PHASE_MS.SCORE_UPDATE;
-    } else if (status === "FINAL_RANKING") {
-      const t = setTimeout(async () => {
-        const res = await fetch("/api/session", { method: "POST" });
-        if (res.ok) {
-          const { id } = (await res.json()) as { id: string };
-          router.replace(`/game/${id}`);
-        }
-      }, PHASE_MS.FINAL_RANKING);
-      return () => clearTimeout(t);
     } else {
       return;
     }
 
-    const t = setTimeout(
-      () => {
-        post(`/api/session/${sessionId}/advance`, { rev });
-      },
-      Math.max(0, delay),
-    );
+    const currentRev = rev;
+    const t = setTimeout(() => advanceNow(currentRev), Math.max(0, delay));
     return () => clearTimeout(t);
-  }, [state, clockOffsetMs, post, router, sessionId]);
+  }, [status, rev, questionStartedAt, post, router, sessionId]);
 
   return (
     <main className="sb-stand-bg relative min-h-dvh overflow-hidden text-white">
