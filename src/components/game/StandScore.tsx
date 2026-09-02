@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import type { PublicState } from "@/lib/game/types";
 import { seatColor, initials } from "@/lib/ui";
 import { PointsCountUp } from "@/components/motion/PointsCountUp";
@@ -18,11 +17,10 @@ export function StandScore({ state }: { state: PublicState }) {
         {rows.map((p, i) => {
           const delta = gained.get(p.id) ?? 0;
           return (
-            <motion.li
+            <li
               key={p.id}
-              layout
-              transition={{ type: "spring", stiffness: 260, damping: 24 }}
-              className="flex items-center gap-4 rounded-2xl bg-white/10 px-5 py-4"
+              style={{ "--i": i } as React.CSSProperties}
+              className="sb-anim-fade-up sb-stagger flex items-center gap-4 rounded-2xl bg-white/10 px-5 py-4"
             >
               <span className="w-8 text-center text-2xl font-black text-white/50">{i + 1}</span>
               <span
@@ -33,20 +31,16 @@ export function StandScore({ state }: { state: PublicState }) {
               </span>
               <span className="text-xl font-semibold">{p.firstName}</span>
               {delta > 0 && (
-                <motion.span
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="rounded-full bg-green-500/25 px-2 py-0.5 text-sm font-bold text-green-300"
-                >
+                <span className="sb-anim-fade rounded-full bg-green-500/25 px-2 py-0.5 text-sm font-bold text-green-300">
                   +{delta}
-                </motion.span>
+                </span>
               )}
               <PointsCountUp
                 value={p.score}
                 from={Math.max(0, p.score - delta)}
                 className="ml-auto text-2xl font-black tabular-nums"
               />
-            </motion.li>
+            </li>
           );
         })}
       </ul>

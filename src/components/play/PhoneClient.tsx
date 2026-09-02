@@ -1,6 +1,5 @@
 "use client";
 import { useCallback, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { useGameState } from "@/lib/realtime/useGameState";
 import { OPTION_LETTERS, OPTION_CLASS, medal } from "@/lib/ui";
 import { useStoredPlayer } from "./useStoredPlayer";
@@ -95,15 +94,7 @@ export function PhoneClient({ sessionId }: { sessionId: string }) {
   if (phase === "JOIN") return <JoinForm onSubmit={join} error={joinError} busy={joining} />;
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={phase}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
-        transition={{ duration: 0.25 }}
-        className="min-h-dvh"
-      >
+    <div key={phase} className="min-h-dvh">
         {phase === "WAITING" && <Waiting name={player!.firstName} status={state?.status} />}
         {phase === "ANSWERING" && state?.question && (
           <Answering
@@ -129,8 +120,7 @@ export function PhoneClient({ sessionId }: { sessionId: string }) {
             onLeave={clear}
           />
         )}
-      </motion.div>
-    </AnimatePresence>
+    </div>
   );
 }
 
@@ -203,16 +193,11 @@ function Answering({
 function Answered() {
   return (
     <Screen tone="dark">
-      <motion.div
-        initial={{ scale: 0.6, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 240, damping: 16 }}
-        className="space-y-3"
-      >
+      <div className="sb-anim-pop space-y-3">
         <p className="text-6xl">✓</p>
         <p className="text-2xl font-black text-green-300">Respuesta registrada</p>
         <p className="text-white/60">No se puede cambiar. Mirá la pantalla grande.</p>
-      </motion.div>
+      </div>
     </Screen>
   );
 }
@@ -220,19 +205,14 @@ function Answered() {
 function RoundResult({ points, correct }: { points: number; correct: boolean }) {
   return (
     <Screen tone="dark">
-      <motion.div
-        initial={{ scale: 0.7, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 220, damping: 16 }}
-        className="space-y-2"
-      >
+      <div className="sb-anim-pop space-y-2">
         <p className="text-7xl">{correct ? "✅" : "❌"}</p>
         <p className={`text-3xl font-black ${correct ? "text-green-300" : "text-white/70"}`}>
           {correct ? "¡Correcto!" : "Esta vez no"}
         </p>
         <p className="text-5xl font-black tabular-nums">+{points}</p>
         <p className="text-white/60">Seguí en la pantalla grande…</p>
-      </motion.div>
+      </div>
     </Screen>
   );
 }

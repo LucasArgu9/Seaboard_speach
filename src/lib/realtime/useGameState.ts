@@ -22,54 +22,63 @@ export interface GameStateHook {
  * Fuente de verdad = GET /api/session/[id]. El canal Realtime solo emite un
  * "bump" que dispara un refetch inmediato. Además hay polling de respaldo para
  * cubrir reconexiones y refrescos.
+ *
+ * Los efectos dependen SOLO de primitivos (sessionId / playerId / pollMs) y
+ * `refetch` es estable de por vida: así ni el polling ni los re-render tiran
+ * abajo el intervalo ni la suscripción.
  */
 export function useGameState(sessionId: string, opts: Options = {}): GameStateHook {
   const pollMs = opts.pollMs ?? 1400;
   const playerId = opts.playerId ?? null;
+
   const [state, setState] = useState<PublicState | null>(null);
   const [connected, setConnected] = useState(false);
   const [offset, setOffset] = useState(0);
-  const inflight = useRef(false);
-  const alive = useRef(true);
 
-  const refetch = useCallback(() => {
-    if (inflight.current) return;
-    inflight.current = true;
-    fetch(`/api/session/${sessionId}${playerId ? `?playerId=${playerId}` : ""}`, { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: PublicState | null) => {
-        if (!alive.current || !data) return;
-        setOffset(data.serverNow - Date.now());
-        setState((prev) => (prev && prev.rev > data.rev ? prev : data));
-      })
-      .catch(() => {})
-      .finally(() => {
-        inflight.current = false;
-      });
-  }, [sessionId, playerId]);
+  const inflight = useRef(false);
+  /** Última función de fetch (capturada por el efecto de polling). */
+  const runRef = useRef<() => void>(() => {});
+  const refetch = useCallback(() => runRef.current(), []);
 
   useEffect(() => {
-    alive.current = true;
-    refetch();
-    const id = setInterval(refetch, pollMs);
+    let cancelled = false;
+
+    const run = () => {
+      if (inflight.current) return;
+      inflight.current = true;
+      const url = `/api/session/${sessionId}${playerId ? `?playerId=${encodeURIComponent(playerId)}` : ""}`;
+      fetch(url, { cache: "no-store" })
+        .then((r) => (r.ok ? (r.json() as Promise<PublicState>) : null))
+        .then((data) => {
+          if (cancelled || !data) return;
+          setOffset(data.serverNow - Date.now());
+          setState((prev) => (prev && prev.rev > data.rev ? prev : data));
+        })
+        .catch(() => {})
+        .finally(() => {
+          inflight.current = false;
+        });
+    };
+
+    runRef.current = run;
+    run();
+    const id = setInterval(run, pollMs);
     return () => {
-      alive.current = false;
+      cancelled = true;
       clearInterval(id);
     };
-  }, [refetch, pollMs]);
+  }, [sessionId, playerId, pollMs]);
 
   useEffect(() => {
     const client = supabaseBrowser();
     const channel = client
       .channel(sessionChannelName(sessionId), { config: { broadcast: { self: false } } })
-      .on("broadcast", { event: "bump" }, () => refetch())
-      .subscribe((status) => {
-        setConnected(status === "SUBSCRIBED");
-      });
+      .on("broadcast", { event: "bump" }, () => runRef.current())
+      .subscribe((status) => setConnected(status === "SUBSCRIBED"));
     return () => {
       client.removeChannel(channel);
     };
-  }, [sessionId, refetch]);
+  }, [sessionId]);
 
   return { state, connected, clockOffsetMs: offset, refetch };
 }

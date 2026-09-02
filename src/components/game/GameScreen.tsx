@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { useGameState } from "@/lib/realtime/useGameState";
 import { PHASE_MS, QUESTION_MS } from "@/lib/game/config";
 import { StandWaiting } from "./StandWaiting";
@@ -110,29 +109,20 @@ export function GameScreen({ sessionId }: { sessionId: string }) {
           Reconectando…
         </div>
       )}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={state?.status ?? "boot"}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -16 }}
-          transition={{ duration: 0.35 }}
-          className="min-h-dvh"
-        >
-          {!state && <Boot />}
-          {state?.status === "WAITING" && <StandWaiting state={state} />}
-          {state?.status === "LOBBY" && (
-            <StandLobby state={state} onStart={startRound} busy={busy} />
-          )}
-          {state?.status === "COUNTDOWN" && <StandCountdown state={state} />}
-          {state?.status === "QUESTION" && (
-            <StandQuestion state={state} clockOffsetMs={clockOffsetMs} />
-          )}
-          {state?.status === "ANSWER_REVEAL" && <StandReveal state={state} />}
-          {state?.status === "SCORE_UPDATE" && <StandScore state={state} />}
-          {state?.status === "FINAL_RANKING" && <StandFinal state={state} />}
-        </motion.div>
-      </AnimatePresence>
+      <div key={state?.status ?? "boot"} className="min-h-dvh">
+        {!state && <Boot />}
+        {state?.status === "WAITING" && <StandWaiting state={state} />}
+        {state?.status === "LOBBY" && (
+          <StandLobby state={state} onStart={startRound} busy={busy} />
+        )}
+        {state?.status === "COUNTDOWN" && <StandCountdown state={state} />}
+        {state?.status === "QUESTION" && (
+          <StandQuestion state={state} clockOffsetMs={clockOffsetMs} />
+        )}
+        {state?.status === "ANSWER_REVEAL" && <StandReveal state={state} />}
+        {state?.status === "SCORE_UPDATE" && <StandScore state={state} />}
+        {state?.status === "FINAL_RANKING" && <StandFinal state={state} />}
+      </div>
     </main>
   );
 }

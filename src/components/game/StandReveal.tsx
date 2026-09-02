@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import type { PublicState } from "@/lib/game/types";
 import { OPTION_LETTERS } from "@/lib/ui";
 
@@ -22,12 +21,7 @@ export function StandReveal({ state }: { state: PublicState }) {
       </div>
 
       <div className="grid items-center gap-8 lg:grid-cols-[1fr_1fr]">
-        <motion.div
-          initial={{ scale: 0.85, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 240, damping: 18 }}
-          className="rounded-3xl bg-green-500/15 p-8 ring-2 ring-green-400"
-        >
+        <div className="sb-anim-pop rounded-3xl bg-green-500/15 p-8 ring-2 ring-green-400">
           <p className="text-lg font-bold uppercase tracking-widest text-green-300">
             Respuesta correcta
           </p>
@@ -37,16 +31,14 @@ export function StandReveal({ state }: { state: PublicState }) {
             </span>
             {correctText}
           </p>
-        </motion.div>
+        </div>
 
         <div className="sb-scroll max-h-[52vh] space-y-2 overflow-y-auto pr-2">
           {gained.map((p, i) => (
-            <motion.div
+            <div
               key={p.playerId}
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.05 * i }}
-              className="flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 text-xl"
+              style={{ "--i": i } as React.CSSProperties}
+              className="sb-anim-slide-left sb-stagger flex items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 text-xl"
             >
               <span className="font-semibold">{p.firstName}</span>
               <span
@@ -57,7 +49,7 @@ export function StandReveal({ state }: { state: PublicState }) {
                 {p.points > 0 ? `+${p.points}` : "+0"}
               </span>
               <span>{p.isCorrect ? "✅" : "❌"}</span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

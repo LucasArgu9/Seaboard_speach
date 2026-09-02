@@ -1,5 +1,4 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
 import type { PublicState } from "@/lib/game/types";
 import { MIN_PLAYERS, MAX_PLAYERS } from "@/lib/game/config";
 import { seatColor, initials } from "@/lib/ui";
@@ -36,27 +35,21 @@ export function StandLobby({
         <div className="flex flex-col">
           <h2 className="mb-4 text-3xl font-black">Jugadores en la sala</h2>
           <ul className="sb-scroll grid max-h-[46vh] gap-3 overflow-y-auto pr-2 sm:grid-cols-2">
-            <AnimatePresence initial={false}>
-              {state.players.map((p) => (
-                <motion.li
-                  key={p.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="flex items-center gap-3 rounded-2xl bg-white/10 p-3"
+            {state.players.map((p) => (
+              <li
+                key={p.id}
+                className="sb-anim-pop flex items-center gap-3 rounded-2xl bg-white/10 p-3"
+              >
+                <span
+                  className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-black text-white"
+                  style={{ background: seatColor(p.seat) }}
                 >
-                  <span
-                    className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-sm font-black text-white"
-                    style={{ background: seatColor(p.seat) }}
-                  >
-                    {initials(p.firstName)}
-                  </span>
-                  <span className="truncate text-lg font-semibold">{p.firstName}</span>
-                  <span className="ml-auto text-green-300">✓</span>
-                </motion.li>
-              ))}
-            </AnimatePresence>
+                  {initials(p.firstName)}
+                </span>
+                <span className="truncate text-lg font-semibold">{p.firstName}</span>
+                <span className="ml-auto text-green-300">✓</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

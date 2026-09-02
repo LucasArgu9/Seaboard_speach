@@ -121,3 +121,48 @@ button,
 }
 .sb-scroll::-webkit-scrollbar { width: 8px; }
 .sb-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 999px; }
+
+/* ==========================================================================
+   Animaciones (CSS puro — sin dependencias de animación en runtime)
+   ========================================================================== */
+@keyframes sb-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sb-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes sb-pop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  70%  { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes sb-slide-left {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes sb-count-pop {
+  0%   { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.sb-anim-fade-up { animation: sb-fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.sb-anim-fade    { animation: sb-fade-in 0.4s ease both; }
+.sb-anim-pop     { animation: sb-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.sb-anim-slide-left { animation: sb-slide-left 0.4s ease both; }
+.sb-anim-count   { animation: sb-count-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Escalonado por índice: style="--i:3" */
+.sb-stagger { animation-delay: calc(var(--i, 0) * 60ms); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sb-anim-fade-up,
+  .sb-anim-fade,
+  .sb-anim-pop,
+  .sb-anim-slide-left,
+  .sb-anim-count {
+    animation: none !important;
+  }
+}

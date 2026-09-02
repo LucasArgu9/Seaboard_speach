@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import type { PublicState } from "@/lib/game/types";
 import { OPTION_LETTERS, OPTION_CLASS } from "@/lib/ui";
 import { TimerRing } from "@/components/motion/TimerRing";
@@ -27,13 +26,9 @@ export function StandQuestion({
       </div>
 
       <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-balance text-5xl font-black leading-tight xl:text-6xl"
-        >
+        <h1 className="sb-anim-fade-up text-balance text-5xl font-black leading-tight xl:text-6xl">
           {q.prompt}
-        </motion.h1>
+        </h1>
         <TimerRing
           startedAt={state.questionStartedAt}
           durationMs={10_000}
@@ -44,19 +39,21 @@ export function StandQuestion({
 
       <div className="grid grid-cols-1 gap-4 self-end sm:grid-cols-2">
         {q.options.map((opt, i) => (
-          <motion.div
+          <div
             key={opt.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.06 * i }}
-            className={`${OPTION_CLASS[i]} flex items-center gap-4 rounded-2xl p-5 text-2xl font-bold`}
-            style={{ background: "color-mix(in srgb, var(--opt) 82%, #06122c)" }}
+            style={
+              {
+                background: "color-mix(in srgb, var(--opt) 82%, #06122c)",
+                "--i": i,
+              } as React.CSSProperties
+            }
+            className={`${OPTION_CLASS[i]} sb-anim-pop sb-stagger flex items-center gap-4 rounded-2xl p-5 text-2xl font-bold`}
           >
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-white/20 text-2xl font-black">
               {OPTION_LETTERS[i]}
             </span>
             <span className="text-balance">{opt.text}</span>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

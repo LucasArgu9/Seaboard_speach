@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    optimizePackageImports: ["framer-motion"],
-  },
+  /* sin config especial */
 };
 
 export default nextConfig;
