@@ -183,7 +183,13 @@ export async function joinSession(
       .select("id, seat")
       .single();
 
-    if (error && error.code === "42703" && withContactCols) {
+    // Columna inexistente: 42703 (Postgres) o PGRST204 (cache de PostgREST).
+    const missingColumn =
+      !!error &&
+      (error.code === "42703" ||
+        error.code === "PGRST204" ||
+        /Could not find the '.*' column/i.test(error.message ?? ""));
+    if (missingColumn && withContactCols) {
       withContactCols = false;
       continue; // reintenta el mismo asiento sin las columnas nuevas
     }
