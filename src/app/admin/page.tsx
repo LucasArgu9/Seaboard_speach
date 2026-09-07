@@ -1,6 +1,11 @@
 import { redirect } from "next/navigation";
 import { isAdmin } from "@/lib/admin/session";
-import { computeAdminStats, type Breakdown, type QuestionStat } from "@/lib/admin/stats";
+import {
+  computeAdminStats,
+  type Breakdown,
+  type QuestionStat,
+  type ParticipantRow,
+} from "@/lib/admin/stats";
 import { LogoutButton } from "@/components/admin/LogoutButton";
 
 export const dynamic = "force-dynamic";
@@ -10,31 +15,41 @@ export default async function AdminPage() {
   const s = await computeAdminStats();
 
   return (
-    <main className="mx-auto max-w-5xl space-y-8 p-6">
+    <main className="mx-auto max-w-6xl space-y-8 p-6">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-3xl font-black text-navy-800">Desafío Seaboard · Panel</h1>
-        <a
-          href="/api/admin/export.csv"
-          className="rounded-xl bg-green-600 px-4 py-2 font-bold text-white"
-        >
-          Exportar CSV
-        </a>
+        <div className="flex flex-wrap gap-2">
+          <a
+            href="/api/admin/export.csv"
+            className="rounded-xl bg-green-600 px-4 py-2 text-sm font-bold text-white"
+          >
+            ⬇ Participantes (CSV)
+          </a>
+          <a
+            href="/api/admin/export-respuestas.csv"
+            className="rounded-xl bg-navy-600 px-4 py-2 text-sm font-bold text-white"
+          >
+            ⬇ Respuestas (CSV)
+          </a>
+        </div>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-3">
+      <section className="grid gap-3 sm:grid-cols-3 lg:grid-cols-6">
         <Kpi label="Participantes" value={s.totalParticipants} />
+        <Kpi label="Salas creadas" value={s.totalSessions} />
         <Kpi label="Rondas jugadas" value={s.totalRounds} />
-        <Kpi
-          label="Prom. respuestas correctas"
-          value={s.avgCorrectPerPlayer.toFixed(1)}
-          sub="por jugador (de 5)"
-        />
+        <Kpi label="Respuestas" value={s.totalAnswers} />
+        <Kpi label="Prom. aciertos" value={s.avgCorrectPerPlayer.toFixed(1)} sub="de 5" />
+        <Kpi label="Universidades" value={s.universities.length} />
       </section>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <BreakdownCard title="Carreras participantes" rows={s.careers} />
-        <BreakdownCard title="Distribución por año cursado" rows={s.years} />
+      <div className="grid gap-6 md:grid-cols-3">
+        <BreakdownCard title="Por universidad" rows={s.universities} />
+        <BreakdownCard title="Por carrera" rows={s.careers} />
+        <BreakdownCard title="Por año cursado" rows={s.years} />
       </div>
+
+      <ParticipantsTable rows={s.participants} />
 
       <div className="grid gap-6 md:grid-cols-2">
         <QuestionCard title="Preguntas más acertadas" rows={s.easiestQuestions} good />
@@ -67,9 +82,9 @@ export default async function AdminPage() {
 
 function Kpi({ label, value, sub }: { label: string; value: number | string; sub?: string }) {
   return (
-    <div className="rounded-2xl border border-cloud bg-white p-5">
-      <p className="text-sm font-semibold text-slate">{label}</p>
-      <p className="text-4xl font-black text-navy-800">{value}</p>
+    <div className="rounded-2xl border border-cloud bg-white p-4">
+      <p className="text-xs font-semibold text-slate">{label}</p>
+      <p className="text-3xl font-black text-navy-800">{value}</p>
       {sub && <p className="text-xs text-slate">{sub}</p>}
     </div>
   );
@@ -83,9 +98,9 @@ function BreakdownCard({ title, rows }: { title: string; rows: Breakdown[] }) {
       <ul className="space-y-2">
         {rows.map((r) => (
           <li key={r.label} className="text-sm">
-            <div className="flex justify-between">
-              <span>{r.label}</span>
-              <span className="font-bold tabular-nums">{r.count}</span>
+            <div className="flex justify-between gap-2">
+              <span className="truncate">{r.label}</span>
+              <span className="shrink-0 font-bold tabular-nums">{r.count}</span>
             </div>
             <div className="mt-1 h-2 rounded-full bg-mist">
               <div
@@ -97,6 +112,60 @@ function BreakdownCard({ title, rows }: { title: string; rows: Breakdown[] }) {
         ))}
         {rows.length === 0 && <li className="text-sm text-slate">Sin datos todavía.</li>}
       </ul>
+    </section>
+  );
+}
+
+function ParticipantsTable({ rows }: { rows: ParticipantRow[] }) {
+  return (
+    <section className="rounded-2xl border border-cloud bg-white p-5">
+      <div className="mb-3 flex items-center justify-between">
+        <h2 className="text-lg font-black text-navy-800">Participantes ({rows.length})</h2>
+        <a href="/api/admin/export.csv" className="text-sm font-semibold text-green-700 underline">
+          Descargar todo
+        </a>
+      </div>
+      <div className="max-h-[26rem] overflow-auto rounded-xl border border-mist">
+        <table className="w-full min-w-[720px] text-sm">
+          <thead className="sticky top-0 bg-mist text-left text-xs uppercase text-slate">
+            <tr>
+              <th className="p-2">Nombre</th>
+              <th className="p-2">Universidad</th>
+              <th className="p-2">Carrera</th>
+              <th className="p-2">Año</th>
+              <th className="p-2">Contacto</th>
+              <th className="p-2">Sala</th>
+              <th className="p-2 text-right">Puntaje</th>
+              <th className="p-2 text-right">✓</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((p, i) => (
+              <tr key={i} className="border-t border-mist">
+                <td className="p-2 font-semibold">
+                  {p.firstName} {p.lastName}
+                </td>
+                <td className="p-2">{p.university}</td>
+                <td className="p-2">{p.career}</td>
+                <td className="p-2">{p.year}</td>
+                <td className="p-2">{p.contact || "—"}</td>
+                <td className="p-2 tabular-nums">{p.sessionCode}</td>
+                <td className="p-2 text-right font-bold tabular-nums">
+                  {p.score.toLocaleString("es-AR")}
+                </td>
+                <td className="p-2 text-right tabular-nums">{p.correctCount}</td>
+              </tr>
+            ))}
+            {rows.length === 0 && (
+              <tr>
+                <td colSpan={8} className="p-3 text-center text-slate">
+                  Sin participantes todavía.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }
@@ -134,4 +203,3 @@ function QuestionCard({
     </section>
   );
 }
-

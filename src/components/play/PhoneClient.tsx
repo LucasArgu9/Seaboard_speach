@@ -224,6 +224,28 @@ function FinalResult({
   entry: { rank: number; score: number; correctCount: number; sharedPosition: boolean } | null;
   onLeave: () => void;
 }) {
+  const [left, setLeft] = useState(false);
+
+  const leave = () => {
+    onLeave();
+    setLeft(true);
+    // Cierra la pestaña. Si el navegador no lo permite (pestaña no abierta por
+    // script), queda el mensaje de abajo.
+    window.setTimeout(() => window.close(), 60);
+  };
+
+  if (left) {
+    return (
+      <Screen tone="dark">
+        <div className="space-y-2">
+          <p className="text-6xl">👋</p>
+          <p className="text-2xl font-black text-green-300">¡Gracias por jugar!</p>
+          <p className="text-white/60">Ya podés cerrar esta pestaña.</p>
+        </div>
+      </Screen>
+    );
+  }
+
   return (
     <Screen tone="dark">
       <div className="space-y-4">
@@ -242,7 +264,7 @@ function FinalResult({
           <p className="text-xl text-white/70">¡Gracias por jugar!</p>
         )}
         <button
-          onClick={onLeave}
+          onClick={leave}
           className="sb-focus mt-4 rounded-2xl bg-white/15 px-8 py-3 text-lg font-bold"
         >
           Salir
