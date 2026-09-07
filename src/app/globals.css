@@ -7,16 +7,17 @@
    ========================================================================== */
 
 :root {
-  --sb-navy-900: #0a1f44;
-  --sb-navy-800: #0e2a5c;
-  --sb-navy-700: #143c7e;
+  /* Navy y verde del logo Seaboard */
+  --sb-navy-900: #0a2158;
+  --sb-navy-800: #0e2f74;
+  --sb-navy-700: #163f86;
   --sb-navy-600: #1d4fa2;
   --sb-navy-500: #2e63bd;
 
-  --sb-green-700: #1e7a3d;
-  --sb-green-600: #268c46;
-  --sb-green-500: #33a457;
-  --sb-green-400: #5cc07c;
+  --sb-green-700: #1f7a34;
+  --sb-green-600: #268e39;
+  --sb-green-500: #2fa23d;
+  --sb-green-400: #57c274;
   --sb-green-300: #8fd8a6;
 
   --sb-amber: #f2a83b;
@@ -97,9 +98,9 @@ button,
 /* Fondo del stand (pantalla grande) --------------------------------------- */
 .sb-stand-bg {
   background:
-    radial-gradient(1200px 620px at 12% -8%, rgba(46, 99, 189, 0.4), transparent 60%),
-    radial-gradient(1000px 560px at 100% 0%, rgba(51, 164, 87, 0.28), transparent 55%),
-    linear-gradient(160deg, var(--sb-navy-900), var(--sb-navy-800) 55%, #08183a);
+    radial-gradient(1200px 620px at 12% -8%, rgba(29, 79, 162, 0.42), transparent 60%),
+    radial-gradient(1000px 560px at 100% 0%, rgba(47, 162, 61, 0.26), transparent 55%),
+    linear-gradient(160deg, var(--sb-navy-900), var(--sb-navy-800) 55%, #06183f);
 }
 
 .sb-focus:focus-visible {

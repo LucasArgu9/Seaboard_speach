@@ -63,8 +63,10 @@ export function JoinForm({
   return (
     <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col justify-center gap-5 p-6">
       <div className="text-center">
-        <Wordmark className="justify-center text-xl text-navy-700" />
-        <h1 className="mt-3 text-3xl font-black text-navy-800">DESAFÍO SEABOARD</h1>
+        <div className="flex justify-center">
+          <Wordmark tone="light" showTagline className="text-[2.6rem]" />
+        </div>
+        <h1 className="mt-4 text-3xl font-black text-navy-800">DESAFÍO SEABOARD</h1>
         <p className="text-slate">¿Cuánto aprendiste sobre nosotros?</p>
       </div>
 
