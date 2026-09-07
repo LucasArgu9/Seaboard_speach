@@ -18,6 +18,7 @@ Ejecutá los archivos **en orden** en el **SQL Editor** del dashboard
 migrations/0001_schema.sql
 migrations/0002_rls.sql
 migrations/0003_indexes.sql
+migrations/0004_join_fields.sql
 ```
 
 ## 3. Cargar el banco de preguntas

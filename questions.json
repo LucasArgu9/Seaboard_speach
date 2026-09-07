@@ -12,10 +12,22 @@
       "difficulty": "facil",
       "prompt": "¿Cuántos años de historia tiene Seaboard en la zona?",
       "options": [
-        { "id": "q01a", "text": "Más de 100 años" },
-        { "id": "q01b", "text": "Unos 25 años" },
-        { "id": "q01c", "text": "Menos de 10 años" },
-        { "id": "q01d", "text": "Exactamente 50 años" }
+        {
+          "id": "q01a",
+          "text": "Más de 100 años"
+        },
+        {
+          "id": "q01b",
+          "text": "Unos 25 años"
+        },
+        {
+          "id": "q01c",
+          "text": "Menos de 10 años"
+        },
+        {
+          "id": "q01d",
+          "text": "Exactamente 50 años"
+        }
       ],
       "correctOptionId": "q01a",
       "reference": "«tenemos más de 100 años de historia en la zona»"
@@ -26,10 +38,22 @@
       "difficulty": "facil",
       "prompt": "¿Qué produce Seaboard a partir de la caña de azúcar?",
       "options": [
-        { "id": "q02a", "text": "Azúcar, bioetanol y energía renovable" },
-        { "id": "q02b", "text": "Solamente azúcar" },
-        { "id": "q02c", "text": "Vino y aceite de oliva" },
-        { "id": "q02d", "text": "Papel y cartón" }
+        {
+          "id": "q02a",
+          "text": "Azúcar, bioetanol y energía"
+        },
+        {
+          "id": "q02b",
+          "text": "Solamente azúcar"
+        },
+        {
+          "id": "q02c",
+          "text": "Vino y aceite de oliva"
+        },
+        {
+          "id": "q02d",
+          "text": "Papel y cartón"
+        }
       ],
       "correctOptionId": "q02a",
       "reference": "«Nos dedicamos a producir azúcar, bioetanol y también energía renovables todo a partir de la Caña de Azúcar»"
@@ -40,10 +64,22 @@
       "difficulty": "facil",
       "prompt": "¿En qué departamento está ubicada Seaboard?",
       "options": [
-        { "id": "q03a", "text": "Orán" },
-        { "id": "q03b", "text": "Rosario de la Frontera" },
-        { "id": "q03c", "text": "Cafayate" },
-        { "id": "q03d", "text": "General Güemes" }
+        {
+          "id": "q03a",
+          "text": "Orán"
+        },
+        {
+          "id": "q03b",
+          "text": "Rosario de la Frontera"
+        },
+        {
+          "id": "q03c",
+          "text": "Cafayate"
+        },
+        {
+          "id": "q03d",
+          "text": "General Güemes"
+        }
       ],
       "correctOptionId": "q03a",
       "reference": "«estamos ubicados en el departamento Orán»"
@@ -52,12 +88,24 @@
       "id": "q04",
       "category": "empleo",
       "difficulty": "facil",
-      "prompt": "Seaboard es el principal empleador privado de...",
+      "prompt": "Seaboard es uno de los principales empleadores privados de...",
       "options": [
-        { "id": "q04a", "text": "Salta" },
-        { "id": "q04b", "text": "Jujuy" },
-        { "id": "q04c", "text": "Tucumán" },
-        { "id": "q04d", "text": "Córdoba" }
+        {
+          "id": "q04a",
+          "text": "Salta"
+        },
+        {
+          "id": "q04b",
+          "text": "Jujuy"
+        },
+        {
+          "id": "q04c",
+          "text": "Tucumán"
+        },
+        {
+          "id": "q04d",
+          "text": "Córdoba"
+        }
       ],
       "correctOptionId": "q04a",
       "reference": "«Hoy somos el principal empleador privado de Salta»"
@@ -68,10 +116,22 @@
       "difficulty": "facil",
       "prompt": "¿A cuántas personas da trabajo Seaboard de manera directa e indirecta?",
       "options": [
-        { "id": "q05a", "text": "Más de 3000 personas" },
-        { "id": "q05b", "text": "Alrededor de 300 personas" },
-        { "id": "q05c", "text": "Menos de 100 personas" },
-        { "id": "q05d", "text": "Más de 50000 personas" }
+        {
+          "id": "q05a",
+          "text": "Más de 2000 personas"
+        },
+        {
+          "id": "q05b",
+          "text": "Alrededor de 300 personas"
+        },
+        {
+          "id": "q05c",
+          "text": "Menos de 100 personas"
+        },
+        {
+          "id": "q05d",
+          "text": "Más de 50000 personas"
+        }
       ],
       "correctOptionId": "q05a",
       "reference": "«damos trabajo a mas de 3000 personas de manera directa e indirecta»"
@@ -82,10 +142,22 @@
       "difficulty": "media",
       "prompt": "El empleo que genera Seaboard es...",
       "options": [
-        { "id": "q06a", "text": "Directo e indirecto" },
-        { "id": "q06b", "text": "Solo directo" },
-        { "id": "q06c", "text": "Solo indirecto" },
-        { "id": "q06d", "text": "Solo temporal por un mes" }
+        {
+          "id": "q06a",
+          "text": "Directo e indirecto"
+        },
+        {
+          "id": "q06b",
+          "text": "Solo directo"
+        },
+        {
+          "id": "q06c",
+          "text": "Solo indirecto"
+        },
+        {
+          "id": "q06d",
+          "text": "Solo temporal por un mes"
+        }
       ],
       "correctOptionId": "q06a",
       "reference": "«damos trabajo a mas de 3000 personas de manera directa e indirecta»"
@@ -96,10 +168,22 @@
       "difficulty": "media",
       "prompt": "¿Qué tres cosas combina Seaboard según su presentación?",
       "options": [
-        { "id": "q07a", "text": "Tradición, tecnología y sostenibilidad" },
-        { "id": "q07b", "text": "Turismo, minería y pesca" },
-        { "id": "q07c", "text": "Moda, música y deporte" },
-        { "id": "q07d", "text": "Importación, reventa y logística" }
+        {
+          "id": "q07a",
+          "text": "Tradición, tecnología y sostenibilidad"
+        },
+        {
+          "id": "q07b",
+          "text": "Turismo, minería y pesca"
+        },
+        {
+          "id": "q07c",
+          "text": "Moda, música y deporte"
+        },
+        {
+          "id": "q07d",
+          "text": "Importación, reventa y logística"
+        }
       ],
       "correctOptionId": "q07a",
       "reference": "«mezclamos lo mejor de tres cosas: la tradición... la tecnología... y la sostenibilidad»"
@@ -110,10 +194,22 @@
       "difficulty": "facil",
       "prompt": "¿A partir de qué materia prima produce Seaboard?",
       "options": [
-        { "id": "q08a", "text": "La caña de azúcar" },
-        { "id": "q08b", "text": "La soja" },
-        { "id": "q08c", "text": "El maíz" },
-        { "id": "q08d", "text": "La uva" }
+        {
+          "id": "q08a",
+          "text": "La caña de azúcar"
+        },
+        {
+          "id": "q08b",
+          "text": "La soja"
+        },
+        {
+          "id": "q08c",
+          "text": "El maíz"
+        },
+        {
+          "id": "q08d",
+          "text": "La uva"
+        }
       ],
       "correctOptionId": "q08a",
       "reference": "«todo a partir de la Caña de Azúcar»"
@@ -124,10 +220,22 @@
       "difficulty": "facil",
       "prompt": "¿Con qué busca ser responsable Seaboard?",
       "options": [
-        { "id": "q09a", "text": "Con el ambiente y con la comunidad" },
-        { "id": "q09b", "text": "Solo con los accionistas" },
-        { "id": "q09c", "text": "Con nada en particular" },
-        { "id": "q09d", "text": "Con otros países únicamente" }
+        {
+          "id": "q09a",
+          "text": "Con el ambiente y con la comunidad"
+        },
+        {
+          "id": "q09b",
+          "text": "Solo con los accionistas"
+        },
+        {
+          "id": "q09c",
+          "text": "Con nada en particular"
+        },
+        {
+          "id": "q09d",
+          "text": "Con otros países únicamente"
+        }
       ],
       "correctOptionId": "q09a",
       "reference": "«buscamos que todo lo que hacemos sea responsable con el ambiente y con la comunidad»"
@@ -138,10 +246,22 @@
       "difficulty": "media",
       "prompt": "¿En qué innova Seaboard con tecnología?",
       "options": [
-        { "id": "q10a", "text": "En bioetanol y energías renovables" },
-        { "id": "q10b", "text": "En videojuegos" },
-        { "id": "q10c", "text": "En telefonía celular" },
-        { "id": "q10d", "text": "En autos eléctricos" }
+        {
+          "id": "q10a",
+          "text": "En bioetanol y energías renovables"
+        },
+        {
+          "id": "q10b",
+          "text": "En videojuegos"
+        },
+        {
+          "id": "q10c",
+          "text": "En telefonía celular"
+        },
+        {
+          "id": "q10d",
+          "text": "En autos eléctricos"
+        }
       ],
       "correctOptionId": "q10a",
       "reference": "«la tecnología con la que innovamos en bioetanol y energías renovables»"
@@ -152,10 +272,22 @@
       "difficulty": "facil",
       "prompt": "¿Cada cuánto capacita Seaboard a sus equipos?",
       "options": [
-        { "id": "q11a", "text": "De forma permanente" },
-        { "id": "q11b", "text": "Una vez cada diez años" },
-        { "id": "q11c", "text": "Nunca" },
-        { "id": "q11d", "text": "Solo a los gerentes" }
+        {
+          "id": "q11a",
+          "text": "De forma permanente"
+        },
+        {
+          "id": "q11b",
+          "text": "Una vez cada diez años"
+        },
+        {
+          "id": "q11c",
+          "text": "Nunca"
+        },
+        {
+          "id": "q11d",
+          "text": "Solo a los gerentes"
+        }
       ],
       "correctOptionId": "q11a",
       "reference": "«tenemos programas de formación, capacitaciones permanentes»"
@@ -166,10 +298,22 @@
       "difficulty": "media",
       "prompt": "¿Cuántas horas de entrenamiento da Seaboard cada año?",
       "options": [
-        { "id": "q12a", "text": "Miles de horas" },
-        { "id": "q12b", "text": "Cinco horas" },
-        { "id": "q12c", "text": "Ninguna" },
-        { "id": "q12d", "text": "Una hora por persona" }
+        {
+          "id": "q12a",
+          "text": "Miles de horas"
+        },
+        {
+          "id": "q12b",
+          "text": "Cinco horas"
+        },
+        {
+          "id": "q12c",
+          "text": "Ninguna"
+        },
+        {
+          "id": "q12d",
+          "text": "Una hora por persona"
+        }
       ],
       "correctOptionId": "q12a",
       "reference": "«cada año damos miles de horas de entrenamiento a nuestros equipos»"
@@ -180,10 +324,22 @@
       "difficulty": "facil",
       "prompt": "¿Seaboard tiene programas de pasantías?",
       "options": [
-        { "id": "q13a", "text": "Sí, en distintas áreas" },
-        { "id": "q13b", "text": "No, nunca tuvo" },
-        { "id": "q13c", "text": "Solo en el exterior" },
-        { "id": "q13d", "text": "Solo para posgrados" }
+        {
+          "id": "q13a",
+          "text": "Sí, en distintas áreas"
+        },
+        {
+          "id": "q13b",
+          "text": "No, nunca tuvo"
+        },
+        {
+          "id": "q13c",
+          "text": "Solo en el exterior"
+        },
+        {
+          "id": "q13d",
+          "text": "Solo para posgrados"
+        }
       ],
       "correctOptionId": "q13a",
       "reference": "«Sí, tenemos programas de pasantías en distintas áreas»"
@@ -194,10 +350,22 @@
       "difficulty": "media",
       "prompt": "Si a un pasante le va bien, ¿qué puede pasar?",
       "options": [
-        { "id": "q14a", "text": "Puede proyectar su carrera dentro de la empresa" },
-        { "id": "q14b", "text": "Debe irse apenas termina" },
-        { "id": "q14c", "text": "No vuelve a tener contacto con Seaboard" },
-        { "id": "q14d", "text": "Pasa obligatoriamente a otra empresa" }
+        {
+          "id": "q14a",
+          "text": "Puede proyectar su carrera dentro de la empresa"
+        },
+        {
+          "id": "q14b",
+          "text": "Debe irse apenas termina"
+        },
+        {
+          "id": "q14c",
+          "text": "No vuelve a tener contacto con Seaboard"
+        },
+        {
+          "id": "q14d",
+          "text": "Pasa obligatoriamente a otra empresa"
+        }
       ],
       "correctOptionId": "q14a",
       "reference": "«si les va bien, poder proyectar su carrera dentro de la empresa»"
@@ -208,10 +376,22 @@
       "difficulty": "facil",
       "prompt": "¿Hace falta experiencia previa para trabajar en Seaboard?",
       "options": [
-        { "id": "q15a", "text": "No: también apuestan al talento joven" },
-        { "id": "q15b", "text": "Sí, mínimo 10 años" },
-        { "id": "q15c", "text": "Sí, siempre es obligatoria" },
-        { "id": "q15d", "text": "Sí, y debe ser en el exterior" }
+        {
+          "id": "q15a",
+          "text": "No: también apuestan al talento joven"
+        },
+        {
+          "id": "q15b",
+          "text": "Sí, mínimo 10 años"
+        },
+        {
+          "id": "q15c",
+          "text": "Sí, siempre es obligatoria"
+        },
+        {
+          "id": "q15d",
+          "text": "Sí, y debe ser en el exterior"
+        }
       ],
       "correctOptionId": "q15a",
       "reference": "«No. Valoramos mucho la experiencia, pero también apostamos al talento joven»"
@@ -222,10 +402,22 @@
       "difficulty": "media",
       "prompt": "¿Qué permiten los programas de formación de Seaboard?",
       "options": [
-        { "id": "q16a", "text": "Aprender desde cero y crecer paso a paso" },
-        { "id": "q16b", "text": "Trabajar sin aprender nada nuevo" },
-        { "id": "q16c", "text": "Solo observar sin participar" },
-        { "id": "q16d", "text": "Reemplazar por completo a la universidad" }
+        {
+          "id": "q16a",
+          "text": "Aprender desde cero y crecer paso a paso"
+        },
+        {
+          "id": "q16b",
+          "text": "Trabajar sin aprender nada nuevo"
+        },
+        {
+          "id": "q16c",
+          "text": "Solo observar sin participar"
+        },
+        {
+          "id": "q16d",
+          "text": "Reemplazar por completo a la universidad"
+        }
       ],
       "correctOptionId": "q16a",
       "reference": "«programas de formación y capacitaciones que te permiten aprender desde cero y crecer paso a paso»"
@@ -236,10 +428,22 @@
       "difficulty": "facil",
       "prompt": "¿Cuál es uno de los beneficios de trabajar en Seaboard?",
       "options": [
-        { "id": "q17a", "text": "Estabilidad laboral" },
-        { "id": "q17b", "text": "Contratos de un solo día" },
-        { "id": "q17c", "text": "Trabajar sin sueldo" },
-        { "id": "q17d", "text": "Empleo solo en temporada" }
+        {
+          "id": "q17a",
+          "text": "Estabilidad laboral"
+        },
+        {
+          "id": "q17b",
+          "text": "Contratos de un solo día"
+        },
+        {
+          "id": "q17c",
+          "text": "Trabajar sin sueldo"
+        },
+        {
+          "id": "q17d",
+          "text": "Empleo solo en temporada"
+        }
       ],
       "correctOptionId": "q17a",
       "reference": "«ofrecemos capacitaciones permanentes, oportunidades de desarrollo real y estabilidad laboral»"
@@ -250,10 +454,22 @@
       "difficulty": "media",
       "prompt": "Además de la experiencia profesional, Seaboard ofrece...",
       "options": [
-        { "id": "q18a", "text": "Capacitaciones permanentes y desarrollo real" },
-        { "id": "q18b", "text": "Un auto 0 km a cada ingresante" },
-        { "id": "q18c", "text": "Vacaciones de seis meses" },
-        { "id": "q18d", "text": "Nada más que el sueldo" }
+        {
+          "id": "q18a",
+          "text": "Capacitaciones permanentes y desarrollo real"
+        },
+        {
+          "id": "q18b",
+          "text": "Un auto 0 km a cada ingresante"
+        },
+        {
+          "id": "q18c",
+          "text": "Vacaciones de seis meses"
+        },
+        {
+          "id": "q18d",
+          "text": "Nada más que el sueldo"
+        }
       ],
       "correctOptionId": "q18a",
       "reference": "«ofrecemos capacitaciones permanentes, oportunidades de desarrollo real y estabilidad laboral»"
@@ -264,10 +480,22 @@
       "difficulty": "media",
       "prompt": "El trabajo en Seaboard tiene impacto en...",
       "options": [
-        { "id": "q19a", "text": "La comunidad y el medio ambiente" },
-        { "id": "q19b", "text": "Solamente en la bolsa de valores" },
-        { "id": "q19c", "text": "En nada concreto" },
-        { "id": "q19d", "text": "Solo en otros continentes" }
+        {
+          "id": "q19a",
+          "text": "La comunidad y el medio ambiente"
+        },
+        {
+          "id": "q19b",
+          "text": "Solamente en la bolsa de valores"
+        },
+        {
+          "id": "q19c",
+          "text": "En nada concreto"
+        },
+        {
+          "id": "q19d",
+          "text": "Solo en otros continentes"
+        }
       ],
       "correctOptionId": "q19a",
       "reference": "«el trabajo tiene impacto en la comunidad y en el medio ambiente»"
@@ -278,10 +506,22 @@
       "difficulty": "facil",
       "prompt": "¿Cómo es la vida en Orán según la presentación?",
       "options": [
-        { "id": "q20a", "text": "Tranquila" },
-        { "id": "q20b", "text": "Muy estresante" },
-        { "id": "q20c", "text": "Igual que en una megaciudad" },
-        { "id": "q20d", "text": "Sin ningún servicio" }
+        {
+          "id": "q20a",
+          "text": "Tranquila"
+        },
+        {
+          "id": "q20b",
+          "text": "Muy estresante"
+        },
+        {
+          "id": "q20c",
+          "text": "Igual que en una megaciudad"
+        },
+        {
+          "id": "q20d",
+          "text": "Sin ningún servicio"
+        }
       ],
       "correctOptionId": "q20a",
       "reference": "«Orán es una ciudad en donde la vida tranquila»"
@@ -292,10 +532,22 @@
       "difficulty": "media",
       "prompt": "¿Qué estilo tiene el pueblo del complejo agroindustrial?",
       "options": [
-        { "id": "q21a", "text": "Colonial" },
-        { "id": "q21b", "text": "Futurista" },
-        { "id": "q21c", "text": "Medieval" },
-        { "id": "q21d", "text": "Industrial moderno" }
+        {
+          "id": "q21a",
+          "text": "Colonial"
+        },
+        {
+          "id": "q21b",
+          "text": "Futurista"
+        },
+        {
+          "id": "q21c",
+          "text": "Medieval"
+        },
+        {
+          "id": "q21d",
+          "text": "Industrial moderno"
+        }
       ],
       "correctOptionId": "q21a",
       "reference": "«el pueblo tiene un estilo colonial que te sorprendería»"
@@ -304,12 +556,24 @@
       "id": "q22",
       "category": "vida-oran",
       "difficulty": "media",
-      "prompt": "¿Qué actividades ofrece el club de Seaboard?",
+      "prompt": "¿Qué actividades ofrece el club deportivo de Seaboard?",
       "options": [
-        { "id": "q22a", "text": "Gym, tenis, vóley, básquet, natación y golf, entre otras" },
-        { "id": "q22b", "text": "Únicamente ajedrez" },
-        { "id": "q22c", "text": "Ninguna actividad deportiva" },
-        { "id": "q22d", "text": "Solo esquí" }
+        {
+          "id": "q22a",
+          "text": "Gym, tenis, vóley, básquet, natación y golf, entre otras"
+        },
+        {
+          "id": "q22b",
+          "text": "Únicamente ajedrez"
+        },
+        {
+          "id": "q22c",
+          "text": "Ninguna actividad deportiva"
+        },
+        {
+          "id": "q22d",
+          "text": "Solo esquí"
+        }
       ],
       "correctOptionId": "q22a",
       "reference": "«un club con un montón de actividades (gym, tenis, vóley, basquet, funcional, zumba, natación y uno de los mejores campos de golf de la región)»"
@@ -320,10 +584,22 @@
       "difficulty": "media",
       "prompt": "¿Por qué se destaca el campo de golf del complejo?",
       "options": [
-        { "id": "q23a", "text": "Es uno de los mejores de la región" },
-        { "id": "q23b", "text": "Es el más pequeño del país" },
-        { "id": "q23c", "text": "Está siempre cerrado" },
-        { "id": "q23d", "text": "No tiene césped" }
+        {
+          "id": "q23a",
+          "text": "Es uno de los mejores de la región"
+        },
+        {
+          "id": "q23b",
+          "text": "Es el más pequeño del país"
+        },
+        {
+          "id": "q23c",
+          "text": "Está siempre cerrado"
+        },
+        {
+          "id": "q23d",
+          "text": "No tiene césped"
+        }
       ],
       "correctOptionId": "q23a",
       "reference": "«uno de los mejores campos de golf de la región»"
@@ -334,10 +610,22 @@
       "difficulty": "media",
       "prompt": "¿Qué servicios hay dentro del complejo?",
       "options": [
-        { "id": "q24a", "text": "Súper, servicio médico, cajeros automáticos y restorán" },
-        { "id": "q24b", "text": "Solo una oficina administrativa" },
-        { "id": "q24c", "text": "Un aeropuerto internacional" },
-        { "id": "q24d", "text": "Nada, hay que salir del complejo para todo" }
+        {
+          "id": "q24a",
+          "text": "Súper, servicio médico, cajeros automáticos y restorán"
+        },
+        {
+          "id": "q24b",
+          "text": "Solo una oficina administrativa"
+        },
+        {
+          "id": "q24c",
+          "text": "Un aeropuerto internacional"
+        },
+        {
+          "id": "q24d",
+          "text": "Nada, hay que salir del complejo para todo"
+        }
       ],
       "correctOptionId": "q24a",
       "reference": "«además de tener un super dentro, servicio medico, cajeros automáticos y restoran»"
@@ -348,10 +636,22 @@
       "difficulty": "facil",
       "prompt": "¿Se puede crecer dentro de Seaboard?",
       "options": [
-        { "id": "q25a", "text": "Sí: hay pasantes que hoy ocupan cargos importantes" },
-        { "id": "q25b", "text": "No, nadie asciende nunca" },
-        { "id": "q25c", "text": "Solo si te vas y volvés" },
-        { "id": "q25d", "text": "Solo con contactos externos" }
+        {
+          "id": "q25a",
+          "text": "Sí: hay pasantes que hoy ocupan cargos importantes"
+        },
+        {
+          "id": "q25b",
+          "text": "No, nadie asciende nunca"
+        },
+        {
+          "id": "q25c",
+          "text": "Solo si te vas y volvés"
+        },
+        {
+          "id": "q25d",
+          "text": "Solo con contactos externos"
+        }
       ],
       "correctOptionId": "q25a",
       "reference": "«Tenemos casos de gente que empezó como pasante y hoy ocupa cargos importantes»"
@@ -362,10 +662,22 @@
       "difficulty": "media",
       "prompt": "¿A qué le apuesta la empresa para cubrir sus cargos?",
       "options": [
-        { "id": "q26a", "text": "Al desarrollo interno" },
-        { "id": "q26b", "text": "A traer siempre gente de afuera" },
-        { "id": "q26c", "text": "A dejar los cargos vacantes" },
-        { "id": "q26d", "text": "A sortearlos al azar" }
+        {
+          "id": "q26a",
+          "text": "Al desarrollo interno"
+        },
+        {
+          "id": "q26b",
+          "text": "A traer siempre gente de afuera"
+        },
+        {
+          "id": "q26c",
+          "text": "A dejar los cargos vacantes"
+        },
+        {
+          "id": "q26d",
+          "text": "A sortearlos al azar"
+        }
       ],
       "correctOptionId": "q26a",
       "reference": "«La empresa apuesta al desarrollo interno y hay muchas oportunidades para quienes se esfuerzan»"
@@ -376,10 +688,22 @@
       "difficulty": "facil",
       "prompt": "¿Cómo puede postularse un estudiante a Seaboard?",
       "options": [
-        { "id": "q27a", "text": "Escaneando el QR, enviando el CV por mail o dejándolo en el stand" },
-        { "id": "q27b", "text": "Solo presentándose sin CV en la fábrica" },
-        { "id": "q27c", "text": "Únicamente por correo postal" },
-        { "id": "q27d", "text": "No hay forma de postularse" }
+        {
+          "id": "q27a",
+          "text": "Escaneando el QR, enviando el CV por mail o dejándolo en el stand"
+        },
+        {
+          "id": "q27b",
+          "text": "Solo presentándose sin CV en la fábrica"
+        },
+        {
+          "id": "q27c",
+          "text": "Únicamente por correo postal"
+        },
+        {
+          "id": "q27d",
+          "text": "No hay forma de postularse"
+        }
       ],
       "correctOptionId": "q27a",
       "reference": "«Podés escanear el código QR... Enviar tu CV a Empleos@seaboard.com.ar o dejar tu CV con nosotros»"
@@ -390,10 +714,22 @@
       "difficulty": "media",
       "prompt": "¿A qué correo se puede enviar el CV?",
       "options": [
-        { "id": "q28a", "text": "Empleos@seaboard.com.ar" },
-        { "id": "q28b", "text": "info@salta.gob.ar" },
-        { "id": "q28c", "text": "cv@universidad.edu" },
-        { "id": "q28d", "text": "contacto@caña.com" }
+        {
+          "id": "q28a",
+          "text": "Empleos@seaboard.com.ar"
+        },
+        {
+          "id": "q28b",
+          "text": "info@salta.gob.ar"
+        },
+        {
+          "id": "q28c",
+          "text": "cv@universidad.edu"
+        },
+        {
+          "id": "q28d",
+          "text": "contacto@caña.com"
+        }
       ],
       "correctOptionId": "q28a",
       "reference": "«Enviar tu CV a Empleos@seaboard.com.ar»"
@@ -404,10 +740,22 @@
       "difficulty": "media",
       "prompt": "Si dejás tu CV en el stand, ¿para qué te tienen en cuenta?",
       "options": [
-        { "id": "q29a", "text": "Para búsquedas activas y programas de pasantías o formación" },
-        { "id": "q29b", "text": "Para nada, solo lo archivan" },
-        { "id": "q29c", "text": "Solo para puestos gerenciales" },
-        { "id": "q29d", "text": "Solo para trabajo en el exterior" }
+        {
+          "id": "q29a",
+          "text": "Para búsquedas activas y programas de pasantías o formación"
+        },
+        {
+          "id": "q29b",
+          "text": "Para nada, solo lo archivan"
+        },
+        {
+          "id": "q29c",
+          "text": "Solo para puestos gerenciales"
+        },
+        {
+          "id": "q29d",
+          "text": "Solo para trabajo en el exterior"
+        }
       ],
       "correctOptionId": "q29a",
       "reference": "«Te vamos a tener en cuenta para las búsquedas activas y para programas de pasantías o formación»"
@@ -418,13 +766,25 @@
       "difficulty": "media",
       "prompt": "¿Con qué área de Seaboard se vincula Abogacía?",
       "options": [
-        { "id": "q30a", "text": "Área Legal" },
-        { "id": "q30b", "text": "Molienda" },
-        { "id": "q30c", "text": "Cosecha" },
-        { "id": "q30d", "text": "Calderas" }
+        {
+          "id": "q30a",
+          "text": "Área Legal"
+        },
+        {
+          "id": "q30b",
+          "text": "Molienda"
+        },
+        {
+          "id": "q30c",
+          "text": "Cosecha"
+        },
+        {
+          "id": "q30d",
+          "text": "Calderas"
+        }
       ],
       "correctOptionId": "q30a",
-      "reference": "Cuadro Carreras UCASAL y Áreas de Seaboard: Abogacía → Área Legal"
+      "reference": "Cuadro Carreras y Áreas de Seaboard: Abogacía → Área Legal"
     },
     {
       "id": "q31",
@@ -432,10 +792,22 @@
       "difficulty": "media",
       "prompt": "¿Cuál de estas carreras puede vincularse con Fábrica de Azúcar, Molienda o Destilería?",
       "options": [
-        { "id": "q31a", "text": "Ingeniería Industrial" },
-        { "id": "q31b", "text": "Abogacía" },
-        { "id": "q31c", "text": "Psicología" },
-        { "id": "q31d", "text": "Lic. en Comercio Internacional" }
+        {
+          "id": "q31a",
+          "text": "Ingeniería Industrial"
+        },
+        {
+          "id": "q31b",
+          "text": "Abogacía"
+        },
+        {
+          "id": "q31c",
+          "text": "Psicología"
+        },
+        {
+          "id": "q31d",
+          "text": "Lic. en Comercio Internacional"
+        }
       ],
       "correctOptionId": "q31a",
       "reference": "Cuadro: Ing. Industrial → Fábrica de azúcar, Molienda, Destilería, Depósito, Mantenimiento, Centro de Control Agrícola"
@@ -446,10 +818,22 @@
       "difficulty": "media",
       "prompt": "La Ingeniería en Informática se vincula con áreas como...",
       "options": [
-        { "id": "q32a", "text": "Aplicaciones, Redes, Base de Datos, Service Desk y Soporte Técnico" },
-        { "id": "q32b", "text": "Cultivo y Cosecha de caña" },
-        { "id": "q32c", "text": "Relaciones Laborales" },
-        { "id": "q32d", "text": "Proyectos Hídricos" }
+        {
+          "id": "q32a",
+          "text": "Aplicaciones, Redes, Base de Datos, Service Desk y Soporte Técnico"
+        },
+        {
+          "id": "q32b",
+          "text": "Cultivo y Cosecha de caña"
+        },
+        {
+          "id": "q32c",
+          "text": "Relaciones Laborales"
+        },
+        {
+          "id": "q32d",
+          "text": "Proyectos Hídricos"
+        }
       ],
       "correctOptionId": "q32a",
       "reference": "Cuadro: Ing. en Informática → Aplicaciones, Redes, Base de Datos, Service Desk, Soporte Técnico, Infraestructura IT"
@@ -458,15 +842,27 @@
       "id": "q33",
       "category": "carreras-areas",
       "difficulty": "media",
-      "prompt": "¿Qué carrera trabaja con el área MASH (Medio Ambiente, Seguridad e Higiene)?",
+      "prompt": "¿Qué carrera se vincula con el área MASH (Medio Ambiente, Seguridad e Higiene)?",
       "options": [
-        { "id": "q33a", "text": "Higiene y Seguridad" },
-        { "id": "q33b", "text": "Arquitectura" },
-        { "id": "q33c", "text": "Contador Público" },
-        { "id": "q33d", "text": "Lic. en Comercio Internacional" }
+        {
+          "id": "q33a",
+          "text": "Ingeniería en Recursos Naturales y Medio Ambiente"
+        },
+        {
+          "id": "q33b",
+          "text": "Contador Público Nacional"
+        },
+        {
+          "id": "q33c",
+          "text": "Licenciatura en Enfermería"
+        },
+        {
+          "id": "q33d",
+          "text": "Ingeniería Química"
+        }
       ],
       "correctOptionId": "q33a",
-      "reference": "Cuadro: Higiene y Seguridad → MASH (Medio Ambiente, Seguridad e Higiene)"
+      "reference": "Cuadro Carreras y Áreas de Seaboard: el área MASH (Medio Ambiente, Seguridad e Higiene) se vincula con perfiles ambientales."
     },
     {
       "id": "q34",
@@ -474,10 +870,22 @@
       "difficulty": "media",
       "prompt": "Contador Público y Administración de Empresas se vinculan con...",
       "options": [
-        { "id": "q34a", "text": "Contraloría, Finanzas, Administración y Recursos Humanos" },
-        { "id": "q34b", "text": "Calderas y Cogeneración" },
-        { "id": "q34c", "text": "Herbicidas y Cosecha" },
-        { "id": "q34d", "text": "Service Desk y Redes" }
+        {
+          "id": "q34a",
+          "text": "Contraloría, Finanzas, Administración y Recursos Humanos"
+        },
+        {
+          "id": "q34b",
+          "text": "Calderas y Cogeneración"
+        },
+        {
+          "id": "q34c",
+          "text": "Herbicidas y Cosecha"
+        },
+        {
+          "id": "q34d",
+          "text": "Service Desk y Redes"
+        }
       ],
       "correctOptionId": "q34a",
       "reference": "Cuadro: Contador Público / Administración de Empresas → Contraloría, Finanzas, Administración, RRHH"
@@ -486,29 +894,53 @@
       "id": "q35",
       "category": "carreras-areas",
       "difficulty": "media",
-      "prompt": "¿Qué carrera se vincula con Recursos Humanos en selección, desarrollo y bienestar laboral?",
+      "prompt": "¿Qué carrera se puede vincular con Recursos Humanos (selección, desarrollo y bienestar laboral)?",
       "options": [
-        { "id": "q35a", "text": "Psicología" },
-        { "id": "q35b", "text": "Ingeniería Civil" },
-        { "id": "q35c", "text": "Tecnicatura en Seguridad Informática" },
-        { "id": "q35d", "text": "Arquitectura" }
+        {
+          "id": "q35a",
+          "text": "Licenciatura en Administración"
+        },
+        {
+          "id": "q35b",
+          "text": "Ingeniería Electromecánica"
+        },
+        {
+          "id": "q35c",
+          "text": "Ingeniería Agronómica"
+        },
+        {
+          "id": "q35d",
+          "text": "Licenciatura en Enfermería"
+        }
       ],
       "correctOptionId": "q35a",
-      "reference": "Cuadro: Psicología → Recursos Humanos (selección, desarrollo, bienestar laboral)"
+      "reference": "Cuadro Carreras y Áreas de Seaboard: Recursos Humanos (selección, desarrollo, bienestar laboral)."
     },
     {
       "id": "q36",
       "category": "carreras-areas",
       "difficulty": "media",
-      "prompt": "La Lic. en Comercio Internacional se vincula con el Área Comercial, que exporta...",
+      "prompt": "El Área Comercial de Seaboard se ocupa de exportar...",
       "options": [
-        { "id": "q36a", "text": "Azúcar, alcohol y bioetanol" },
-        { "id": "q36b", "text": "Autos y maquinaria" },
-        { "id": "q36c", "text": "Software y videojuegos" },
-        { "id": "q36d", "text": "Ropa y calzado" }
+        {
+          "id": "q36a",
+          "text": "Azúcar, alcohol y bioetanol"
+        },
+        {
+          "id": "q36b",
+          "text": "Autos y maquinaria"
+        },
+        {
+          "id": "q36c",
+          "text": "Software y videojuegos"
+        },
+        {
+          "id": "q36d",
+          "text": "Ropa y calzado"
+        }
       ],
       "correctOptionId": "q36a",
-      "reference": "Cuadro: Lic. en Comercio Internacional → Área Comercial (exportaciones de azúcar, alcohol, bioetanol)"
+      "reference": "Cuadro Áreas de Seaboard: Área Comercial → exportaciones de azúcar, alcohol y bioetanol."
     },
     {
       "id": "q37",
@@ -516,10 +948,22 @@
       "difficulty": "media",
       "prompt": "¿Qué carrera se vincula con Intendencia, Infraestructura y Proyectos Hídricos?",
       "options": [
-        { "id": "q37a", "text": "Ingeniería Civil" },
-        { "id": "q37b", "text": "Psicología" },
-        { "id": "q37c", "text": "Abogacía" },
-        { "id": "q37d", "text": "Lic. en Recursos Humanos" }
+        {
+          "id": "q37a",
+          "text": "Ingeniería Civil"
+        },
+        {
+          "id": "q37b",
+          "text": "Psicología"
+        },
+        {
+          "id": "q37c",
+          "text": "Abogacía"
+        },
+        {
+          "id": "q37d",
+          "text": "Lic. en Recursos Humanos"
+        }
       ],
       "correctOptionId": "q37a",
       "reference": "Cuadro: Ing. Civil → Intendencia, Infraestructura, Proyectos Hídricos, Mantenimiento"
@@ -528,15 +972,27 @@
       "id": "q38",
       "category": "carreras-areas",
       "difficulty": "media",
-      "prompt": "La Lic. en Administración Agropecuaria se vincula con áreas de campo como...",
+      "prompt": "¿Qué carrera se vincula con las áreas de campo (Control Agrícola, Cultivo, Cosecha y Gestión Agrícola)?",
       "options": [
-        { "id": "q38a", "text": "Control Agrícola, Cultivo, Cosecha y Gestión Agrícola" },
-        { "id": "q38b", "text": "Service Desk y Soporte Técnico" },
-        { "id": "q38c", "text": "Área Legal" },
-        { "id": "q38d", "text": "Calderas y COI" }
+        {
+          "id": "q38a",
+          "text": "Ingeniería Agronómica"
+        },
+        {
+          "id": "q38b",
+          "text": "Contador Público Nacional"
+        },
+        {
+          "id": "q38c",
+          "text": "Licenciatura en Enfermería"
+        },
+        {
+          "id": "q38d",
+          "text": "Ingeniería Informática / Sistemas"
+        }
       ],
       "correctOptionId": "q38a",
-      "reference": "Cuadro: Lic. en Administración Agropecuaria → Control Agrícola, Centro de Operaciones, Cultivo, Gestión Agrícola, Herbicidas y Cosecha"
+      "reference": "Cuadro Carreras y Áreas de Seaboard: áreas de campo (Control Agrícola, Centro de Operaciones, Cultivo, Gestión Agrícola, Herbicidas y Cosecha)."
     },
     {
       "id": "q39",
@@ -544,10 +1000,22 @@
       "difficulty": "media",
       "prompt": "¿Qué carrera se vincula con Cogeneración, Calderas y el Centro de Operaciones Integradas (COI)?",
       "options": [
-        { "id": "q39a", "text": "Lic. en Gestión Eficiente de la Energía" },
-        { "id": "q39b", "text": "Arquitectura" },
-        { "id": "q39c", "text": "Contador Público" },
-        { "id": "q39d", "text": "Abogacía" }
+        {
+          "id": "q39a",
+          "text": "Lic. en Gestión Eficiente de la Energía"
+        },
+        {
+          "id": "q39b",
+          "text": "Arquitectura"
+        },
+        {
+          "id": "q39c",
+          "text": "Contador Público"
+        },
+        {
+          "id": "q39d",
+          "text": "Abogacía"
+        }
       ],
       "correctOptionId": "q39a",
       "reference": "Cuadro: Lic. en Gestión Eficiente de la Energía → Cogeneración, Calderas, Centro de Operaciones Integradas (COI)"
@@ -558,10 +1026,22 @@
       "difficulty": "facil",
       "prompt": "Según la charla, ¿qué es lo más importante para sumarse a Seaboard?",
       "options": [
-        { "id": "q40a", "text": "Tener ganas de aprender y de crecer" },
-        { "id": "q40b", "text": "Tener un título de posgrado" },
-        { "id": "q40c", "text": "Vivir en el exterior" },
-        { "id": "q40d", "text": "Hablar tres idiomas" }
+        {
+          "id": "q40a",
+          "text": "Tener ganas de aprender y de crecer"
+        },
+        {
+          "id": "q40b",
+          "text": "Tener un título de posgrado"
+        },
+        {
+          "id": "q40c",
+          "text": "Vivir en el exterior"
+        },
+        {
+          "id": "q40d",
+          "text": "Hablar tres idiomas"
+        }
       ],
       "correctOptionId": "q40a",
       "reference": "«lo importante es que tengas ganas de aprender y de crecer»"

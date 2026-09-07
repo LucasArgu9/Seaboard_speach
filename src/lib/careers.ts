@@ -1,25 +1,23 @@
 /**
- * Opciones del selector de registro (móvil). Carreras del cuadro
- * "Carreras UCASAL y Áreas de Seaboard" del speech + "Otra".
+ * Opciones del selector de registro (móvil). Carreras de la UNSA presentes
+ * en la feria + "Otra carrera (especificar)".
  */
-export const CAREERS = [
-  "Abogacía",
-  "Contador Público",
-  "Administración de Empresas",
-  "Psicología",
-  "Higiene y Seguridad",
-  "Lic. en Recursos Humanos",
-  "Arquitectura",
-  "Ingeniería en Informática",
-  "Tecnicatura en Seguridad Informática",
-  "Lic. en Comercio Internacional",
-  "Ingeniería Industrial",
+export const CAREER_OTHER = "Otra carrera (especificar)";
+
+export const UNSA_CAREERS = [
   "Ingeniería Civil",
-  "Lic. en Administración Agropecuaria",
-  "Lic. en Relaciones Públicas e Institucionales",
-  "Lic. en Gestión Eficiente de la Energía",
-  "Otra",
+  "Ingeniería Industrial",
+  "Ingeniería Química",
+  "Ingeniería Electromecánica",
+  "Ingeniería Agronómica",
+  "Ingeniería en Recursos Naturales y Medio Ambiente",
+  "Ingeniería Informática / Sistemas",
+  "Contador Público Nacional",
+  "Licenciatura en Administración",
+  "Licenciatura en Enfermería",
 ] as const;
+
+export const CAREERS = [...UNSA_CAREERS, CAREER_OTHER] as const;
 
 export type Career = (typeof CAREERS)[number];
 

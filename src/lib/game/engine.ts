@@ -135,7 +135,14 @@ export async function createSession(): Promise<{ id: string; code: string }> {
 
 export async function joinSession(
   sessionId: string,
-  input: { firstName: string; lastName: string; career: string; year: string },
+  input: {
+    firstName: string;
+    lastName: string;
+    career: string;
+    year: string;
+    careerOther?: string;
+    contact?: string;
+  },
 ): Promise<{ playerId: string; seat: number }> {
   const db = supabaseAdmin();
   const session = await loadSession(sessionId);
@@ -149,24 +156,37 @@ export async function joinSession(
   // Reintenta ante colisión de `seat` por carrera entre dos ingresos casi
   // simultáneos. Cada intento relee para respetar el tope de forma estricta.
   let current = players;
+  // Si la migración 0004 (career_other / contact) todavía no se aplicó, se
+  // reintenta el insert sin esas columnas para no bloquear el ingreso.
+  let withContactCols = true;
   for (let attempt = 0; attempt < 6; attempt++) {
     if (current.length >= MAX_PLAYERS) throw new GameError("La sala está llena", "full");
     const used = new Set(current.map((p) => p.seat));
     let seat = 1;
     while (used.has(seat)) seat++;
 
+    const baseRow: Record<string, unknown> = {
+      session_id: sessionId,
+      seat,
+      first_name: input.firstName,
+      last_name: input.lastName,
+      career: input.career,
+      study_year: input.year,
+    };
+    const row = withContactCols
+      ? { ...baseRow, career_other: input.careerOther ?? "", contact: input.contact ?? "" }
+      : baseRow;
+
     const { data, error } = await db
       .from("players")
-      .insert({
-        session_id: sessionId,
-        seat,
-        first_name: input.firstName,
-        last_name: input.lastName,
-        career: input.career,
-        study_year: input.year,
-      })
+      .insert(row)
       .select("id, seat")
       .single();
+
+    if (error && error.code === "42703" && withContactCols) {
+      withContactCols = false;
+      continue; // reintenta el mismo asiento sin las columnas nuevas
+    }
 
     if (!error) {
       const nextStatus: GameStatus = session.status === "WAITING" ? "LOBBY" : session.status;

@@ -21,7 +21,13 @@ async function createSession(api: APIRequestContext): Promise<string> {
 
 async function join(api: APIRequestContext, id: string, name: string) {
   const r = await api.post(`/api/session/${id}/join`, {
-    data: { firstName: name, lastName: "Test", career: "Otra", year: "3°" },
+    data: {
+      firstName: name,
+      lastName: "Test",
+      career: "Ingeniería Industrial",
+      year: "3°",
+      contact: `${name.toLowerCase()}@test.com`,
+    },
   });
   return r;
 }

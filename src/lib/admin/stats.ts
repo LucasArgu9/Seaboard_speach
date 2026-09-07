@@ -102,9 +102,11 @@ function countBy(values: string[]): Breakdown[] {
 /** Filas para el CSV: una por jugador. */
 export async function buildPlayersCsv(): Promise<string> {
   const db = supabaseAdmin();
+  // `*` para tolerar que la migración 0004 (career_other / contact) todavía no
+  // esté aplicada.
   const { data } = await db
     .from("players")
-    .select("session_id, seat, first_name, last_name, career, study_year, score, correct_count, total_time_ms, joined_at")
+    .select("*")
     .order("joined_at", { ascending: true });
 
   const { data: sessions } = await db.from("sessions").select("id, code, finished_at");
@@ -117,7 +119,9 @@ export async function buildPlayersCsv(): Promise<string> {
     "nombre",
     "apellido",
     "carrera",
+    "carrera_detalle",
     "anio_cursado",
+    "contacto",
     "puntaje",
     "respuestas_correctas",
     "tiempo_total_ms",
@@ -133,7 +137,9 @@ export async function buildPlayersCsv(): Promise<string> {
       p.first_name,
       p.last_name,
       p.career,
+      p.career_other ?? "",
       p.study_year,
+      p.contact ?? "",
       p.score,
       p.correct_count,
       p.total_time_ms,
