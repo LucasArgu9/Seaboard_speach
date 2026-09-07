@@ -37,4 +37,27 @@ describe("banco de preguntas", () => {
     const pub = toPublicQuestion(QUESTIONS[0]) as Record<string, unknown>;
     expect(pub.correctOptionId).toBeUndefined();
   });
+
+  it("la respuesta correcta base NO está siempre en la posición A", () => {
+    const posA = QUESTIONS.filter((q) => q.options[0].id === q.correctOptionId).length;
+    expect(posA).toBeLessThan(QUESTIONS.length); // ya no son todas la A
+    expect(posA).toBeGreaterThan(0);
+  });
+
+  it("toPublicQuestion con seed: mezcla determinista y conserva las opciones", () => {
+    const q = QUESTIONS[3];
+    const a = toPublicQuestion(q, "sesion-x");
+    const b = toPublicQuestion(q, "sesion-x");
+    const c = toPublicQuestion(q, "sesion-y");
+    expect(a.options.map((o) => o.id)).toEqual(b.options.map((o) => o.id)); // mismo seed => igual
+    expect(new Set(a.options.map((o) => o.id))).toEqual(new Set(q.options.map((o) => o.id)));
+    // Con distintos seeds, alguna pregunta cambia de orden.
+    const changed = QUESTIONS.some((qq) => {
+      const x = toPublicQuestion(qq, "s1").options.map((o) => o.id).join();
+      const y = toPublicQuestion(qq, "s2").options.map((o) => o.id).join();
+      return x !== y;
+    });
+    expect(changed).toBe(true);
+    void c;
+  });
 });

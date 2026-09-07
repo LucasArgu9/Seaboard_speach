@@ -480,7 +480,7 @@ export async function buildPublicState(
     serverNow: Date.now(),
     answeredCount,
     players: publicPlayers,
-    question: showQuestion && question ? toPublicQuestion(question) : null,
+    question: showQuestion && question ? toPublicQuestion(question, sessionId) : null,
     reveal,
     finalRanking,
     you,

@@ -50,7 +50,14 @@ const options = bank.questions.flatMap((q) =>
 
 const r1 = await db.from("questions").upsert(questions, { onConflict: "id" });
 if (r1.error) throw r1.error;
-const r2 = await db.from("question_options").upsert(options, { onConflict: "id" });
+
+// question_options: se reemplaza por completo. Reordenar los `order` con upsert
+// choca con la restricción unique(question_id,"order"); borrar + insertar es
+// simple y correcto. Las respuestas históricas ponen selected_option_id = null
+// (FK on delete set null) pero conservan is_correct y points.
+const del = await db.from("question_options").delete().neq("id", "__none__");
+if (del.error) throw del.error;
+const r2 = await db.from("question_options").insert(options);
 if (r2.error) throw r2.error;
 
 console.log(`OK · ${questions.length} preguntas · ${options.length} opciones cargadas.`);
