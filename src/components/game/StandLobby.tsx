@@ -20,7 +20,7 @@ export function StandLobby({
   return (
     <div className="grid min-h-dvh grid-rows-[auto_1fr_auto] gap-6 p-10">
       <header className="flex items-center justify-between">
-        <Wordmark tone="dark" className="text-3xl sm:text-4xl" />
+        <Wordmark height={40} />
         <span className="text-2xl font-black tabular-nums">
           {count} <span className="text-white/50">/ {MAX_PLAYERS}</span>
         </span>

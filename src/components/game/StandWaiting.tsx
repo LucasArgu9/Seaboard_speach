@@ -7,7 +7,7 @@ export function StandWaiting({ state }: { state: PublicState }) {
   return (
     <div className="grid min-h-dvh grid-rows-[auto_1fr_auto] gap-6 p-10">
       <header className="flex items-center justify-between">
-        <Wordmark tone="dark" showTagline className="text-4xl sm:text-5xl" />
+        <Wordmark height={56} />
         <span className="rounded-full bg-white/10 px-4 py-1 text-sm font-semibold">Modo feria</span>
       </header>
 
