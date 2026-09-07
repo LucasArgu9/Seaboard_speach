@@ -24,6 +24,7 @@ async function join(api: APIRequestContext, id: string, name: string) {
     data: {
       firstName: name,
       lastName: "Test",
+      university: "UNSA",
       career: "Ingeniería Industrial",
       year: "3°",
       contact: `${name.toLowerCase()}@test.com`,

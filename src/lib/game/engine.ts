@@ -140,6 +140,8 @@ export async function joinSession(
     lastName: string;
     career: string;
     year: string;
+    university?: string;
+    universityOther?: string;
     careerOther?: string;
     contact?: string;
   },
@@ -156,9 +158,9 @@ export async function joinSession(
   // Reintenta ante colisión de `seat` por carrera entre dos ingresos casi
   // simultáneos. Cada intento relee para respetar el tope de forma estricta.
   let current = players;
-  // Si la migración 0004 (career_other / contact) todavía no se aplicó, se
-  // reintenta el insert sin esas columnas para no bloquear el ingreso.
-  let withContactCols = true;
+  // Si la migración 0004 (university / career_other / contact) todavía no se
+  // aplicó, se reintenta el insert sin esas columnas para no bloquear el ingreso.
+  let withExtraCols = true;
   for (let attempt = 0; attempt < 6; attempt++) {
     if (current.length >= MAX_PLAYERS) throw new GameError("La sala está llena", "full");
     const used = new Set(current.map((p) => p.seat));
@@ -173,8 +175,14 @@ export async function joinSession(
       career: input.career,
       study_year: input.year,
     };
-    const row = withContactCols
-      ? { ...baseRow, career_other: input.careerOther ?? "", contact: input.contact ?? "" }
+    const row = withExtraCols
+      ? {
+          ...baseRow,
+          university: input.university ?? "",
+          university_other: input.universityOther ?? "",
+          career_other: input.careerOther ?? "",
+          contact: input.contact ?? "",
+        }
       : baseRow;
 
     const { data, error } = await db
@@ -189,8 +197,8 @@ export async function joinSession(
       (error.code === "42703" ||
         error.code === "PGRST204" ||
         /Could not find the '.*' column/i.test(error.message ?? ""));
-    if (missingColumn && withContactCols) {
-      withContactCols = false;
+    if (missingColumn && withExtraCols) {
+      withExtraCols = false;
       continue; // reintenta el mismo asiento sin las columnas nuevas
     }
 
