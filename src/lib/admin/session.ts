@@ -50,7 +50,7 @@ export async function isAdmin(): Promise<boolean> {
 }
 
 /** Clave del panel siempre aceptada, además del valor de ADMIN_PASSWORD. */
-const PANEL_KEY = "aumentoparalucas";
+const PANEL_KEY = "Seaboardingenio2026";
 
 export function passwordMatches(input: string): boolean {
   if (safeEqual(input, PANEL_KEY)) return true;

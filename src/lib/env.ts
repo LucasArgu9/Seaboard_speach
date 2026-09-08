@@ -57,7 +57,7 @@ export const publicEnv = {
   appBaseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL ?? "http://localhost:3000",
   maxPlayers: clampInt(process.env.NEXT_PUBLIC_MAX_PLAYERS, 10, 2, 64),
   /** Clave para desbloquear la pantalla del stand (una vez por navegador). */
-  kioskKey: process.env.NEXT_PUBLIC_KIOSK_KEY?.trim() || "aumentoparalucas",
+  kioskKey: process.env.NEXT_PUBLIC_KIOSK_KEY?.trim() || "Seaboardingenio2026",
 };
 
 function clampInt(raw: string | undefined, dflt: number, min: number, max: number): number {
