@@ -49,14 +49,9 @@ export async function isAdmin(): Promise<boolean> {
   return age >= 0 && age <= MAX_AGE * 1000;
 }
 
-/** Clave del panel siempre aceptada, además del valor de ADMIN_PASSWORD. */
+/** Única clave del panel /admin. */
 const PANEL_KEY = "Seaboardingenio2026";
 
 export function passwordMatches(input: string): boolean {
-  if (safeEqual(input, PANEL_KEY)) return true;
-  try {
-    return safeEqual(input, serverEnv.adminPassword);
-  } catch {
-    return false;
-  }
+  return safeEqual(input.trim(), PANEL_KEY);
 }
