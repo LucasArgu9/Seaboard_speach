@@ -16,9 +16,35 @@ const SETTLE_MS = 900;
 
 export function GameScreen({ sessionId }: { sessionId: string }) {
   const router = useRouter();
-  const { state, connected, clockOffsetMs, refetch } = useGameState(sessionId, { pollMs: 1200 });
+  const { state, connected, clockOffsetMs, notFound, refetch } = useGameState(sessionId, {
+    pollMs: 1200,
+  });
   const scheduledRev = useRef<number>(-1);
   const [busy, setBusy] = useState(false);
+
+  // Si la sesión de la URL ya no existe (se vació la base, expiró, etc.) o si
+  // no logra cargar en unos segundos, se crea una sala nueva y se redirige.
+  const recovering = useRef(false);
+  useEffect(() => {
+    const goFresh = async () => {
+      if (recovering.current) return;
+      recovering.current = true;
+      try {
+        const res = await fetch("/api/session", { method: "POST" });
+        const { id } = (await res.json()) as { id: string };
+        router.replace(`/game/${id}`);
+      } catch {
+        recovering.current = false;
+      }
+    };
+    if (notFound) {
+      goFresh();
+      return;
+    }
+    if (state) return;
+    const t = setTimeout(goFresh, 7000); // colchón por si el primer GET tarda
+    return () => clearTimeout(t);
+  }, [notFound, state, router]);
 
   // El offset de reloj jitterea en cada poll; lo leemos por ref para no
   // re-disparar el efecto del director (que perdería su temporizador).

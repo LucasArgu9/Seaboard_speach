@@ -15,6 +15,8 @@ export interface GameStateHook {
   connected: boolean;
   /** ms a sumar a Date.now() del cliente para estimar el reloj del servidor. */
   clockOffsetMs: number;
+  /** true si el GET devolvió 404: la sesión ya no existe (p. ej. se vació la base). */
+  notFound: boolean;
   refetch: () => void;
 }
 
@@ -34,6 +36,7 @@ export function useGameState(sessionId: string, opts: Options = {}): GameStateHo
   const [state, setState] = useState<PublicState | null>(null);
   const [connected, setConnected] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [notFound, setNotFound] = useState(false);
 
   const inflight = useRef(false);
   /** Última función de fetch (capturada por el efecto de polling). */
@@ -48,9 +51,13 @@ export function useGameState(sessionId: string, opts: Options = {}): GameStateHo
       inflight.current = true;
       const url = `/api/session/${sessionId}${playerId ? `?playerId=${encodeURIComponent(playerId)}` : ""}`;
       fetch(url, { cache: "no-store" })
-        .then((r) => (r.ok ? (r.json() as Promise<PublicState>) : null))
+        .then((r) => {
+          if (r.status === 404 && !cancelled) setNotFound(true);
+          return r.ok ? (r.json() as Promise<PublicState>) : null;
+        })
         .then((data) => {
           if (cancelled || !data) return;
+          setNotFound(false);
           setOffset(data.serverNow - Date.now());
           setState((prev) => (prev && prev.rev > data.rev ? prev : data));
         })
@@ -80,5 +87,5 @@ export function useGameState(sessionId: string, opts: Options = {}): GameStateHo
     };
   }, [sessionId]);
 
-  return { state, connected, clockOffsetMs: offset, refetch };
+  return { state, connected, clockOffsetMs: offset, notFound, refetch };
 }
