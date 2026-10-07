@@ -51,6 +51,14 @@ const options = bank.questions.flatMap((q) =>
 const r1 = await db.from("questions").upsert(questions, { onConflict: "id" });
 if (r1.error) throw r1.error;
 
+// La base refleja exactamente el banco: se quitan las preguntas que ya no están
+// en questions.json (sus opciones caen por on delete cascade). Falla si alguna
+// tiene respuestas guardadas (FK de answers.question_id).
+const keep = questions.map((q) => q.id).join(",");
+const gone = await db.from("questions").delete().not("id", "in", `(${keep})`).select("id");
+if (gone.error) throw gone.error;
+if (gone.data?.length) console.log(`Eliminadas de la base: ${gone.data.map((r) => r.id).join(", ")}`);
+
 // question_options: se reemplaza por completo. Reordenar los `order` con upsert
 // choca con la restricción unique(question_id,"order"); borrar + insertar es
 // simple y correcto. Las respuestas históricas ponen selected_option_id = null

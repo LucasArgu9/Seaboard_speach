@@ -163,32 +163,6 @@
       "reference": "«damos trabajo a mas de 3000 personas de manera directa e indirecta»"
     },
     {
-      "id": "q07",
-      "category": "historia",
-      "difficulty": "media",
-      "prompt": "¿Qué tres cosas combina Seaboard según su presentación?",
-      "options": [
-        {
-          "id": "q07c",
-          "text": "Moda, música y deporte"
-        },
-        {
-          "id": "q07d",
-          "text": "Importación, reventa y logística"
-        },
-        {
-          "id": "q07a",
-          "text": "Tradición, tecnología y sostenibilidad"
-        },
-        {
-          "id": "q07b",
-          "text": "Turismo, minería y pesca"
-        }
-      ],
-      "correctOptionId": "q07a",
-      "reference": "«mezclamos lo mejor de tres cosas: la tradición... la tecnología... y la sostenibilidad»"
-    },
-    {
       "id": "q08",
       "category": "productos",
       "difficulty": "facil",
@@ -239,84 +213,6 @@
       ],
       "correctOptionId": "q09a",
       "reference": "«buscamos que todo lo que hacemos sea responsable con el ambiente y con la comunidad»"
-    },
-    {
-      "id": "q10",
-      "category": "sostenibilidad",
-      "difficulty": "media",
-      "prompt": "¿En qué innova Seaboard con tecnología?",
-      "options": [
-        {
-          "id": "q10b",
-          "text": "En videojuegos"
-        },
-        {
-          "id": "q10a",
-          "text": "En bioetanol y energías renovables"
-        },
-        {
-          "id": "q10c",
-          "text": "En telefonía celular"
-        },
-        {
-          "id": "q10d",
-          "text": "En autos eléctricos"
-        }
-      ],
-      "correctOptionId": "q10a",
-      "reference": "«la tecnología con la que innovamos en bioetanol y energías renovables»"
-    },
-    {
-      "id": "q11",
-      "category": "capacitacion",
-      "difficulty": "facil",
-      "prompt": "¿Cada cuánto capacita Seaboard a sus equipos?",
-      "options": [
-        {
-          "id": "q11b",
-          "text": "Una vez cada diez años"
-        },
-        {
-          "id": "q11c",
-          "text": "Nunca"
-        },
-        {
-          "id": "q11a",
-          "text": "De forma permanente"
-        },
-        {
-          "id": "q11d",
-          "text": "Solo a los gerentes"
-        }
-      ],
-      "correctOptionId": "q11a",
-      "reference": "«tenemos programas de formación, capacitaciones permanentes»"
-    },
-    {
-      "id": "q12",
-      "category": "capacitacion",
-      "difficulty": "media",
-      "prompt": "¿Cuántas horas de entrenamiento da Seaboard cada año?",
-      "options": [
-        {
-          "id": "q12c",
-          "text": "Ninguna"
-        },
-        {
-          "id": "q12d",
-          "text": "Una hora por persona"
-        },
-        {
-          "id": "q12b",
-          "text": "Cinco horas"
-        },
-        {
-          "id": "q12a",
-          "text": "Miles de horas"
-        }
-      ],
-      "correctOptionId": "q12a",
-      "reference": "«cada año damos miles de horas de entrenamiento a nuestros equipos»"
     },
     {
       "id": "q13",
@@ -501,32 +397,6 @@
       "reference": "«el trabajo tiene impacto en la comunidad y en el medio ambiente»"
     },
     {
-      "id": "q20",
-      "category": "vida-oran",
-      "difficulty": "facil",
-      "prompt": "¿Cómo es la vida en Orán según la presentación?",
-      "options": [
-        {
-          "id": "q20c",
-          "text": "Igual que en una megaciudad"
-        },
-        {
-          "id": "q20d",
-          "text": "Sin ningún servicio"
-        },
-        {
-          "id": "q20b",
-          "text": "Muy estresante"
-        },
-        {
-          "id": "q20a",
-          "text": "Tranquila"
-        }
-      ],
-      "correctOptionId": "q20a",
-      "reference": "«Orán es una ciudad en donde la vida tranquila»"
-    },
-    {
       "id": "q21",
       "category": "vida-oran",
       "difficulty": "media",
@@ -577,32 +447,6 @@
       ],
       "correctOptionId": "q22a",
       "reference": "«un club con un montón de actividades (gym, tenis, vóley, basquet, funcional, zumba, natación y uno de los mejores campos de golf de la región)»"
-    },
-    {
-      "id": "q23",
-      "category": "vida-oran",
-      "difficulty": "media",
-      "prompt": "¿Por qué se destaca el campo de golf del complejo?",
-      "options": [
-        {
-          "id": "q23b",
-          "text": "Es el más pequeño del país"
-        },
-        {
-          "id": "q23c",
-          "text": "Está siempre cerrado"
-        },
-        {
-          "id": "q23a",
-          "text": "Es uno de los mejores de la región"
-        },
-        {
-          "id": "q23d",
-          "text": "No tiene césped"
-        }
-      ],
-      "correctOptionId": "q23a",
-      "reference": "«uno de los mejores campos de golf de la región»"
     },
     {
       "id": "q24",
@@ -690,15 +534,15 @@
       "options": [
         {
           "id": "q27b",
-          "text": "Solo presentándose sin CV en la fábrica"
+          "text": "Solo presentando CV en la fábrica"
         },
         {
           "id": "q27c",
-          "text": "Únicamente por correo postal"
+          "text": "Únicamente por correo electrónico"
         },
         {
           "id": "q27a",
-          "text": "Escaneando el QR, enviando el CV por mail o dejándolo en el stand"
+          "text": "Escaneando el QR, y subiéndolo en una web"
         },
         {
           "id": "q27d",
@@ -707,58 +551,6 @@
       ],
       "correctOptionId": "q27a",
       "reference": "«Podés escanear el código QR... Enviar tu CV a Empleos@seaboard.com.ar o dejar tu CV con nosotros»"
-    },
-    {
-      "id": "q28",
-      "category": "postulacion",
-      "difficulty": "media",
-      "prompt": "¿A qué correo se puede enviar el CV?",
-      "options": [
-        {
-          "id": "q28b",
-          "text": "info@salta.gob.ar"
-        },
-        {
-          "id": "q28c",
-          "text": "cv@universidad.edu"
-        },
-        {
-          "id": "q28d",
-          "text": "contacto@caña.com"
-        },
-        {
-          "id": "q28a",
-          "text": "Empleos@seaboard.com.ar"
-        }
-      ],
-      "correctOptionId": "q28a",
-      "reference": "«Enviar tu CV a Empleos@seaboard.com.ar»"
-    },
-    {
-      "id": "q29",
-      "category": "postulacion",
-      "difficulty": "media",
-      "prompt": "Si dejás tu CV en el stand, ¿para qué te tienen en cuenta?",
-      "options": [
-        {
-          "id": "q29a",
-          "text": "Para búsquedas activas y programas de pasantías o formación"
-        },
-        {
-          "id": "q29b",
-          "text": "Para nada, solo lo archivan"
-        },
-        {
-          "id": "q29c",
-          "text": "Solo para puestos gerenciales"
-        },
-        {
-          "id": "q29d",
-          "text": "Solo para trabajo en el exterior"
-        }
-      ],
-      "correctOptionId": "q29a",
-      "reference": "«Te vamos a tener en cuenta para las búsquedas activas y para programas de pasantías o formación»"
     },
     {
       "id": "q30",
@@ -837,32 +629,6 @@
       ],
       "correctOptionId": "q32a",
       "reference": "Cuadro: Ing. en Informática → Aplicaciones, Redes, Base de Datos, Service Desk, Soporte Técnico, Infraestructura IT"
-    },
-    {
-      "id": "q33",
-      "category": "carreras-areas",
-      "difficulty": "media",
-      "prompt": "¿Qué carrera se vincula con el área MASH (Medio Ambiente, Seguridad e Higiene)?",
-      "options": [
-        {
-          "id": "q33a",
-          "text": "Ingeniería en Recursos Naturales y Medio Ambiente"
-        },
-        {
-          "id": "q33c",
-          "text": "Licenciatura en Enfermería"
-        },
-        {
-          "id": "q33b",
-          "text": "Contador Público Nacional"
-        },
-        {
-          "id": "q33d",
-          "text": "Ingeniería Química"
-        }
-      ],
-      "correctOptionId": "q33a",
-      "reference": "Cuadro Carreras y Áreas de Seaboard: el área MASH (Medio Ambiente, Seguridad e Higiene) se vincula con perfiles ambientales."
     },
     {
       "id": "q34",
@@ -950,7 +716,7 @@
       "options": [
         {
           "id": "q37a",
-          "text": "Ingeniería Civil"
+          "text": "Arquitectura"
         },
         {
           "id": "q37b",
@@ -980,7 +746,7 @@
         },
         {
           "id": "q38a",
-          "text": "Ingeniería Agronómica"
+          "text": "Administración Agropecuaria"
         },
         {
           "id": "q38c",
@@ -1045,6 +811,240 @@
       ],
       "correctOptionId": "q40a",
       "reference": "«lo importante es que tengas ganas de aprender y de crecer»"
+    },
+    {
+      "id": "q41",
+      "category": "ubicacion",
+      "difficulty": "facil",
+      "prompt": "¿En qué localidad se encuentra ubicada la empresa?",
+      "options": [
+        {
+          "id": "q41b",
+          "text": "Hipólito Yrigoyen"
+        },
+        {
+          "id": "q41c",
+          "text": "Pichanal"
+        },
+        {
+          "id": "q41a",
+          "text": "El Tabacal"
+        },
+        {
+          "id": "q41d",
+          "text": "Colonia Santa Rosa"
+        }
+      ],
+      "correctOptionId": "q41a",
+      "reference": "Speech (vida en El Tabacal/Orán): el complejo agroindustrial está en El Tabacal, departamento Orán."
+    },
+    {
+      "id": "q42",
+      "category": "empresa",
+      "difficulty": "media",
+      "prompt": "Seaboard Energías Renovables y Alimentos forma parte de una empresa con presencia internacional llamada:",
+      "options": [
+        {
+          "id": "q42a",
+          "text": "Seaboard Corporation"
+        },
+        {
+          "id": "q42b",
+          "text": "Seaboard Global Energy"
+        },
+        {
+          "id": "q42c",
+          "text": "Tabacal Corporation"
+        },
+        {
+          "id": "q42d",
+          "text": "Seaboard Industrial Group"
+        }
+      ],
+      "correctOptionId": "q42a",
+      "reference": "Pregunta incorporada desde «más preguntas.docx»; no figura textual en el speech."
+    },
+    {
+      "id": "q43",
+      "category": "productos",
+      "difficulty": "facil",
+      "prompt": "¿Cuál de estos productos NO produce Seaboard?",
+      "options": [
+        {
+          "id": "q43b",
+          "text": "Azúcar"
+        },
+        {
+          "id": "q43c",
+          "text": "Bioetanol"
+        },
+        {
+          "id": "q43d",
+          "text": "Energía renovable"
+        },
+        {
+          "id": "q43a",
+          "text": "Papel"
+        }
+      ],
+      "correctOptionId": "q43a",
+      "reference": "«Nos dedicamos a producir azúcar, bioetanol y también energía renovables todo a partir de la Caña de Azúcar»"
+    },
+    {
+      "id": "q44",
+      "category": "carreras-areas",
+      "difficulty": "facil",
+      "prompt": "¿Qué área podría encontrarse dentro de una agroindustria como Seaboard?",
+      "options": [
+        {
+          "id": "q44b",
+          "text": "Ingeniería"
+        },
+        {
+          "id": "q44c",
+          "text": "Recursos Humanos"
+        },
+        {
+          "id": "q44d",
+          "text": "Comunicación"
+        },
+        {
+          "id": "q44a",
+          "text": "Todas las anteriores"
+        }
+      ],
+      "correctOptionId": "q44a",
+      "reference": "Cuadro Carreras y Áreas de Seaboard (áreas industriales, de RRHH e institucionales). Correcta inferida: el docx no la marca con ✅."
+    },
+    {
+      "id": "q45",
+      "category": "historia",
+      "difficulty": "media",
+      "prompt": "¿Con qué nombre es reconocida históricamente nuestra empresa en la región?",
+      "options": [
+        {
+          "id": "q45a",
+          "text": "Ingenio y Refinería San Martín del Tabacal"
+        },
+        {
+          "id": "q45b",
+          "text": "Ingenio Salteño del Norte"
+        },
+        {
+          "id": "q45c",
+          "text": "Refinería San Ramón"
+        },
+        {
+          "id": "q45d",
+          "text": "Complejo Industrial Tabacalero"
+        }
+      ],
+      "correctOptionId": "q45a",
+      "reference": "Pregunta incorporada desde «más preguntas.docx»; no figura textual en el speech."
+    },
+    {
+      "id": "q46",
+      "category": "carreras-areas",
+      "difficulty": "facil",
+      "prompt": "¿Qué profesional podría trabajar en Seaboard?",
+      "options": [
+        {
+          "id": "q46b",
+          "text": "Ingeniero Industrial"
+        },
+        {
+          "id": "q46c",
+          "text": "Contador Público"
+        },
+        {
+          "id": "q46d",
+          "text": "Licenciado en Recursos Humanos"
+        },
+        {
+          "id": "q46a",
+          "text": "Todos los anteriores"
+        }
+      ],
+      "correctOptionId": "q46a",
+      "reference": "Cuadro Carreras y Áreas de Seaboard: Ing. Industrial, Contador Público y Lic. en Recursos Humanos tienen áreas en Seaboard."
+    },
+    {
+      "id": "q47",
+      "category": "empresa",
+      "difficulty": "facil",
+      "prompt": "¿Qué característica tiene una empresa agroindustrial como Seaboard?",
+      "options": [
+        {
+          "id": "q47a",
+          "text": "Combina actividades agrícolas e industriales"
+        },
+        {
+          "id": "q47b",
+          "text": "Solo produce materias primas"
+        },
+        {
+          "id": "q47c",
+          "text": "Solo comercializa productos"
+        },
+        {
+          "id": "q47d",
+          "text": "Solo presta servicios"
+        }
+      ],
+      "correctOptionId": "q47a",
+      "reference": "Cuadro Carreras y Áreas de Seaboard: áreas de campo (cultivo, cosecha) y de fábrica (molienda, destilería)."
+    },
+    {
+      "id": "q48",
+      "category": "empresa",
+      "difficulty": "facil",
+      "prompt": "Seaboard participa principalmente en el sector:",
+      "options": [
+        {
+          "id": "q48a",
+          "text": "Agroindustrial"
+        },
+        {
+          "id": "q48b",
+          "text": "Minero"
+        },
+        {
+          "id": "q48c",
+          "text": "Petrolero"
+        },
+        {
+          "id": "q48d",
+          "text": "Pesquero"
+        }
+      ],
+      "correctOptionId": "q48a",
+      "reference": "Speech: «Nuestro complejo agroindustrial»; produce azúcar, bioetanol y energía a partir de la caña de azúcar."
+    },
+    {
+      "id": "q49",
+      "category": "historia",
+      "difficulty": "facil",
+      "prompt": "¿Qué distingue a Seaboard dentro de la región?",
+      "options": [
+        {
+          "id": "q49a",
+          "text": "Su trayectoria de más de un siglo"
+        },
+        {
+          "id": "q49b",
+          "text": "Ser una empresa nueva"
+        },
+        {
+          "id": "q49c",
+          "text": "Dedicarse únicamente al comercio"
+        },
+        {
+          "id": "q49d",
+          "text": "No tener operaciones industriales"
+        }
+      ],
+      "correctOptionId": "q49a",
+      "reference": "«tenemos más de 100 años de historia en la zona»"
     }
   ]
 }

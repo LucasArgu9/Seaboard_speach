@@ -44,6 +44,19 @@ describe("banco de preguntas", () => {
     expect(posA).toBeGreaterThan(0);
   });
 
+  it("'Todas/Todos las/los anteriores' queda siempre última al mezclar", () => {
+    const pinned = QUESTIONS.filter((q) =>
+      q.options.some((o) => /^(todas las anteriores|todos los anteriores)$/i.test(o.text.trim())),
+    );
+    expect(pinned.length).toBeGreaterThan(0);
+    for (const q of pinned) {
+      for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+        const opts = toPublicQuestion(q, seed).options;
+        expect(opts[opts.length - 1].text).toMatch(/anteriores/i);
+      }
+    }
+  });
+
   it("toPublicQuestion con seed: mezcla determinista y conserva las opciones", () => {
     const q = QUESTIONS[3];
     const a = toPublicQuestion(q, "sesion-x");

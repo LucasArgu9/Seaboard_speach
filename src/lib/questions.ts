@@ -38,6 +38,9 @@ export function pickRandomQuestionIds(n: number): string[] {
   return pool.slice(0, Math.min(n, pool.length));
 }
 
+/** Opciones que deben quedar siempre al final al mezclar. */
+const PINNED_LAST = /^(todas las anteriores|todos los anteriores)$/i;
+
 /** PRNG determinista sembrado por string (xmur3 + mulberry32). */
 function seededRandom(seed: string): () => number {
   let h = 1779033703 ^ seed.length;
@@ -71,7 +74,16 @@ function shuffleWithSeed<T>(arr: readonly T[], seed: string): T[] {
  * muestre las opciones en distinto orden y no se pueda memorizar la posición.
  */
 export function toPublicQuestion(q: Question, seed?: string) {
-  const options = seed ? shuffleWithSeed(q.options, `${seed}:${q.id}`) : q.options;
+  let options = q.options;
+  if (seed) {
+    // "Todas/Todos las/los anteriores" siempre va última: si se mezclara con el
+    // resto, la opción dejaría de tener sentido.
+    const isPinned = (o: QuestionOption) => PINNED_LAST.test(o.text.trim());
+    options = [
+      ...shuffleWithSeed(q.options.filter((o) => !isPinned(o)), `${seed}:${q.id}`),
+      ...q.options.filter(isPinned),
+    ];
+  }
   return {
     id: q.id,
     category: q.category,
