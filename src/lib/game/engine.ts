@@ -249,16 +249,22 @@ export async function advanceRound(sessionId: string, expectedRev?: number): Pro
     await gradeQuestion(session);
   }
 
+  // El ranking final se escribe ANTES de pasar a FINAL_RANKING: así ningún
+  // cliente ve ese estado con la tabla vacía.
+  if (t.finalizes) {
+    await writeRoundScores(sessionId);
+    patch.finished_at = new Date().toISOString();
+  }
+
   const { error } = await db.from("sessions").update(patch).eq("id", sessionId).eq("rev", session.rev);
   if (error) throw new Error(error.message);
 
-  if (t.finalizes) {
-    await writeRoundScores(sessionId);
-    await db.from("sessions").update({ finished_at: new Date().toISOString() }).eq("id", sessionId);
-  }
-
-  await broadcastBump(sessionId, session.rev + 1);
-  return buildPublicState(sessionId);
+  // Avisar a los clientes y armar la respuesta no dependen entre sí.
+  const [, state] = await Promise.all([
+    broadcastBump(sessionId, session.rev + 1),
+    buildPublicState(sessionId),
+  ]);
+  return state;
 }
 
 /* --------------------------------------------------------- grading + scores */
@@ -270,77 +276,91 @@ async function gradeQuestion(session: SessionRow): Promise<void> {
   const question = getQuestion(questionId);
   if (!question || !session.question_started_at) return;
 
-  const players = await loadPlayers(session.id);
+  // Todo se calcula en memoria: 2 lecturas en paralelo + 2 escrituras en lote en
+  // paralelo (antes eran ~3 consultas por jugador, una detrás de otra).
+  const [players, answersRes] = await Promise.all([
+    loadPlayers(session.id),
+    db
+      .from("answers")
+      .select("player_id, question_id, selected_option_id, is_correct, response_time_ms, timed_out, points")
+      .eq("session_id", session.id),
+  ]);
+  const allAns = (answersRes.data ?? []) as (AnswerRow & { question_id: string })[];
 
-  const { data: existing } = await db
-    .from("answers")
-    .select("player_id, selected_option_id, response_time_ms, timed_out")
-    .eq("session_id", session.id)
-    .eq("question_id", questionId);
+  const current = new Map(allAns.filter((a) => a.question_id === questionId).map((a) => [a.player_id, a]));
 
-  const byPlayer = new Map(
-    (existing ?? []).map((a) => [a.player_id as string, a as Partial<AnswerRow>]),
-  );
-
-  // 1) Filas faltantes = no respondió => timeout, 0 puntos.
-  const missing = players
-    .filter((p) => !byPlayer.has(p.id))
-    .map((p) => ({
-      session_id: session.id,
-      player_id: p.id,
-      question_id: questionId,
-      selected_option_id: null,
-      is_correct: false,
-      response_time_ms: QUESTION_MS,
-      timed_out: true,
-      points: 0,
-    }));
-  if (missing.length) {
-    await db.from("answers").upsert(missing, {
-      onConflict: "player_id,question_id",
-      ignoreDuplicates: true,
-    });
-  }
-
-  // 2) Califica las respuestas presentes.
+  // Calificación de ESTA pregunta. Sin fila = no respondió => timeout, 0 puntos.
+  const graded = new Map<string, AnswerRow>();
   for (const p of players) {
-    const a = byPlayer.get(p.id);
-    if (!a) continue;
+    const a = current.get(p.id);
+    if (!a) {
+      graded.set(p.id, {
+        player_id: p.id,
+        question_id: questionId,
+        selected_option_id: null,
+        is_correct: false,
+        response_time_ms: QUESTION_MS,
+        timed_out: true,
+        points: 0,
+      });
+      continue;
+    }
     const rt =
       typeof a.response_time_ms === "number"
         ? Math.min(Math.max(a.response_time_ms, 0), QUESTION_MS)
         : QUESTION_MS;
-    const late = a.timed_out === true;
-    const isCorrect = !late && a.selected_option_id === question.correctOptionId;
-    const points = pointsFor(isCorrect, QUESTION_MS - rt);
-    await db
-      .from("answers")
-      .update({ is_correct: isCorrect, points, response_time_ms: rt })
-      .eq("session_id", session.id)
-      .eq("question_id", questionId)
-      .eq("player_id", p.id);
+    const isCorrect = a.timed_out !== true && a.selected_option_id === question.correctOptionId;
+    graded.set(p.id, {
+      player_id: p.id,
+      question_id: questionId,
+      selected_option_id: a.selected_option_id,
+      is_correct: isCorrect,
+      response_time_ms: rt,
+      timed_out: a.timed_out === true,
+      points: pointsFor(isCorrect, QUESTION_MS - rt),
+    });
   }
-  // 3) Recalcula acumulados de cada jugador desde TODAS sus respuestas.
-  const { data: allAns } = await db
-    .from("answers")
-    .select("player_id, is_correct, points, response_time_ms, timed_out")
-    .eq("session_id", session.id);
 
+  // Acumulados de cada jugador: respuestas de las otras preguntas + esta ya calificada.
   const agg = new Map<string, { score: number; correct: number; time: number }>();
-  for (const a of allAns ?? []) {
-    const cur = agg.get(a.player_id as string) ?? { score: 0, correct: 0, time: 0 };
-    cur.score += (a.points as number) ?? 0;
+  const addToAgg = (a: AnswerRow) => {
+    const cur = agg.get(a.player_id) ?? { score: 0, correct: 0, time: 0 };
+    cur.score += a.points ?? 0;
     if (a.is_correct) cur.correct += 1;
-    if (!a.timed_out) cur.time += (a.response_time_ms as number) ?? 0;
-    agg.set(a.player_id as string, cur);
-  }
-  for (const p of players) {
+    if (!a.timed_out) cur.time += a.response_time_ms ?? 0;
+    agg.set(a.player_id, cur);
+  };
+  for (const a of allAns) if (a.question_id !== questionId) addToAgg(a);
+  for (const a of graded.values()) addToAgg(a);
+
+  // Las filas faltantes se insertan con ignoreDuplicates: si justo entró una
+  // respuesta tardía mientras se calificaba, no se pisa.
+  const toRow = (a: AnswerRow) => ({ session_id: session.id, ...a });
+  const presentRows = [...graded.values()].filter((a) => current.has(a.player_id)).map(toRow);
+  const missingRows = [...graded.values()].filter((a) => !current.has(a.player_id)).map(toRow);
+  const playerRows = players.map((p) => {
     const cur = agg.get(p.id) ?? { score: 0, correct: 0, time: 0 };
-    await db
-      .from("players")
-      .update({ score: cur.score, correct_count: cur.correct, total_time_ms: cur.time })
-      .eq("id", p.id);
-  }
+    return {
+      id: p.id,
+      session_id: p.session_id,
+      seat: p.seat,
+      first_name: p.first_name,
+      score: cur.score,
+      correct_count: cur.correct,
+      total_time_ms: cur.time,
+    };
+  });
+
+  const [wa, wm, wp] = await Promise.all([
+    presentRows.length
+      ? db.from("answers").upsert(presentRows, { onConflict: "player_id,question_id" })
+      : Promise.resolve({ error: null }),
+    missingRows.length
+      ? db.from("answers").upsert(missingRows, { onConflict: "player_id,question_id", ignoreDuplicates: true })
+      : Promise.resolve({ error: null }),
+    db.from("players").upsert(playerRows, { onConflict: "id" }),
+  ]);
+  for (const r of [wa, wm, wp]) if (r.error) throw new Error(r.error.message);
 }
 
 async function writeRoundScores(sessionId: string): Promise<void> {
@@ -377,8 +397,7 @@ export async function buildPublicState(
   viewerPlayerId?: string,
 ): Promise<PublicState> {
   const db = supabaseAdmin();
-  const session = await loadSession(sessionId);
-  const players = await loadPlayers(sessionId);
+  const [session, players] = await Promise.all([loadSession(sessionId), loadPlayers(sessionId)]);
 
   const publicPlayers: PublicPlayer[] = players
     .map((p) => ({
